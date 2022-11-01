@@ -1,7 +1,7 @@
-package GFO.Spring.service;
+package GFO.Spring.domain.student.service;
 
-import GFO.Spring.domain.Student;
-import GFO.Spring.repository.StudentRepo;
+import GFO.Spring.domain.student.Student;
+import GFO.Spring.domain.student.repository.StudentRepo;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

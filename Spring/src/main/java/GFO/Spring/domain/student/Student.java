@@ -1,4 +1,4 @@
-package GFO.Spring.domain;
+package GFO.Spring.domain.student;
 
 import lombok.*;
 
