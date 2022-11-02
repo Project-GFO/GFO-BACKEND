@@ -1,4 +1,4 @@
-package GFO.Spring.domain.student;
+package GFO.Spring.domain.User;
 
 import lombok.*;
 
@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
-@Getter @NoArgsConstructor @Entity
-public class Student {
+@Entity @Getter
+@NoArgsConstructor
+public class User {
     @Id
     private String email;   // Primary Key
 
@@ -22,5 +23,5 @@ public class Student {
     private String duty;
 
     @Column(nullable = false)
-    private int classnum;
+    private int classNum;
 }

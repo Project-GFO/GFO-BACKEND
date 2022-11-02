@@ -1,18 +1,12 @@
-package GFO.Spring.domain.student.presentation.dto;
+package GFO.Spring.domain.User.presentation.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-
-@AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class SignupRequestDto {
     private String email;
     private String name;
     private String password;
     private String duty;
-    private String classnum;
+    private int classNum;
 }
