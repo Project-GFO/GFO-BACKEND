@@ -9,6 +9,8 @@ import javax.persistence.Id;
 
 @Entity @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
     @Id
     private String email;   // Primary Key
