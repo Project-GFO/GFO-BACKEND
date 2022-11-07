@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @Configuration
 @RequiredArgsConstructor
 class EmailConfig {
+    //커밋 실수로 주석한번 답니다.
     private final MailProperties mailProperties;
 
     @Bean
