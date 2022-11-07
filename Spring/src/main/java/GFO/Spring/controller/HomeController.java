@@ -17,6 +17,7 @@ public class HomeController {
     private final EmailService emailService;
 
     //인증
+    // 커밋 실수로 주석한번 답니다.
     @PostMapping("/emailConfirm"
     )
     @ApiOperation(value = "회원 가입시 이메인 인증", notes = "기존사용하고 있는 이메일을 통해 인증")
