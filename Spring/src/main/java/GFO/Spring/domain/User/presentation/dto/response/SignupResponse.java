@@ -13,11 +13,4 @@ public class SignupResponse {
     private String duty;
     private int classNum;
 
-    public SignupResponse(User user) {
-        this.email = email;
-        this.name = name;
-        this.password = password;
-        this.duty = duty;
-        this.classNum = classNum;
-    }
 }
