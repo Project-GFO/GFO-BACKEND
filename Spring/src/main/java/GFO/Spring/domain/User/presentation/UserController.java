@@ -1,4 +1,4 @@
-package GFO.Spring.domain.User.presentation.dto;
+package GFO.Spring.domain.User.presentation;
 
 import GFO.Spring.domain.User.presentation.dto.request.SignupRequest;
 import GFO.Spring.domain.User.service.UserService;
@@ -13,7 +13,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public void Signup(SignupRequest signupRequest) {
+    public void Signup(@RequestBody SignupRequest signupRequest) {
         userService.signUp(signupRequest);
     }
 }
