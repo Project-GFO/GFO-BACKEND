@@ -23,14 +23,4 @@ public class SignupRequest {
     private final String duty;
     @NotEmpty(message = "학번은 필수 입력값입니다")
     private final int classNum;
-
-    public User toEntity() {
-        return User.builder()
-                .email(email)
-                .name(name)
-                .password(password)
-                .duty(duty)
-                .classNum(classNum)
-                .build();
-    }
 }
