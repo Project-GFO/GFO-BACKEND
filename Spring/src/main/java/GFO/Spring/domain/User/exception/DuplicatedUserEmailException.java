@@ -11,6 +11,5 @@ public class DuplicatedUserEmailException extends RuntimeException{
     public DuplicatedUserEmailException(String message) {
         super(message);
         this.errorCode = ErrorCode.EMAIL_ALREADY_EXIST;
-
     }
 }

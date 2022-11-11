@@ -1,11 +1,8 @@
 package GFO.Spring.domain.User.presentation.dto.response;
 
-import GFO.Spring.domain.User.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class SignupResponse {
     private String email;
     private String name;
