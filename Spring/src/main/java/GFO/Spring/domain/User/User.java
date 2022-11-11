@@ -27,5 +27,5 @@ public class User {
     private String duty;
 
     @Column(nullable = false)
-    private int classNum;
+    private Integer classNum;
 }
