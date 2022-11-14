@@ -1,8 +1,6 @@
 package GFO.Spring.domain.User.presentation.dto.request;
 
-import GFO.Spring.domain.User.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 
@@ -22,5 +20,5 @@ public class SignupRequest {
     @NotBlank(message = "필수 입력란입니다")
     private final String duty;
     @NotEmpty(message = "학번은 필수 입력값입니다")
-    private final int classNum;
+    private final Integer classNum;
 }
