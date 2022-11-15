@@ -1,4 +1,4 @@
-package GFO.Spring.domain.User.exception;
+package GFO.Spring.domain.user.exception;
 
 import GFO.Spring.global.exception.ErrorCode;
 import lombok.AllArgsConstructor;

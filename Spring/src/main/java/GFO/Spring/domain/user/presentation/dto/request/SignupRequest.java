@@ -1,4 +1,4 @@
-package GFO.Spring.domain.User.presentation.dto.request;
+package GFO.Spring.domain.user.presentation.dto.request;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

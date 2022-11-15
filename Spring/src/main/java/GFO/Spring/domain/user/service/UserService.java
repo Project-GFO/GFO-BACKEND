@@ -1,10 +1,10 @@
-package GFO.Spring.domain.User.service;
+package GFO.Spring.domain.user.service;
 
-import GFO.Spring.domain.User.User;
-import GFO.Spring.domain.User.exception.DuplicatedUserClassNumException;
-import GFO.Spring.domain.User.exception.DuplicatedUserEmailException;
-import GFO.Spring.domain.User.presentation.dto.request.SignupRequest;
-import GFO.Spring.domain.User.repository.UserRepository;
+import GFO.Spring.domain.user.User;
+import GFO.Spring.domain.user.exception.DuplicatedUserClassNumException;
+import GFO.Spring.domain.user.exception.DuplicatedUserEmailException;
+import GFO.Spring.domain.user.presentation.dto.request.SignupRequest;
+import GFO.Spring.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

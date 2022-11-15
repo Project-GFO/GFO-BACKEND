@@ -1,6 +1,6 @@
-package GFO.Spring.domain.User.repository;
+package GFO.Spring.domain.user.repository;
 
-import GFO.Spring.domain.User.User;
+import GFO.Spring.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, String> {

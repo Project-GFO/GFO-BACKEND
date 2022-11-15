@@ -1,4 +1,4 @@
-package GFO.Spring.domain.User;
+package GFO.Spring.domain.user;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 
 @Entity @Getter
-@Table(name = "User")
+@Table(name = "member")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

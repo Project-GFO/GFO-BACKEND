@@ -1,10 +1,12 @@
-package GFO.Spring.domain.User.exception;
+package GFO.Spring.domain.user.exception;
 
 
 import GFO.Spring.global.exception.ErrorCode;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class DuplicatedUserEmailException extends RuntimeException{
     private ErrorCode errorCode;
 
