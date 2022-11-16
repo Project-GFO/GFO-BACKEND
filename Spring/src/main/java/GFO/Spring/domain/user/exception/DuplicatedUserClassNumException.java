@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class DuplicatedUserClassNumException extends RuntimeException{
-    private ErrorCode errorCode;
+    private final ErrorCode errorCode;
 
     public DuplicatedUserClassNumException(String message) {
         super(message);
