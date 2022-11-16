@@ -19,11 +19,11 @@ public class Subject {
         this.type = type;
     }
 
-    public Subject atk(String email, String name, String duty, Integer classNum) {
+    public static Subject atk(String email, String name, String duty, Integer classNum) {
         return new Subject(email, name, duty, classNum, "ATK");
     }
 
-    public Subject rtk(String email, String name, String duty, Integer classNum) {
+    public static Subject rtk(String email, String name, String duty, Integer classNum) {
         return new Subject(email, name, duty, classNum, "RTK");
     }
 }
