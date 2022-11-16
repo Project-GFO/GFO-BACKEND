@@ -32,7 +32,7 @@ public class JwtProvider {
     }
 
     public TokenResponse createTokensByLogin(UserResponse userResponse) throws JsonProcessingException {
-        Subject atkSubject = Subject.atk(
+        Subject atkSubject = Subject.accessToken(
                 userResponse.getEmail(),
                 userResponse.getName(),
                 userResponse.getDuty(),

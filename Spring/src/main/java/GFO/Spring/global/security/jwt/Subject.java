@@ -13,11 +13,11 @@ public class Subject {
 
     private final String type;
 
-    public static Subject atk(String email, String name, String duty, Integer classNum) {
+    public static Subject accessToken(String email, String name, String duty, Integer classNum) {
         return new Subject(email, name, duty, classNum, "ATK");
     }
 
-    public static Subject rtk(String email, String name, String duty, Integer classNum) {
+    public static Subject refreshToken(String email, String name, String duty, Integer classNum) {
         return new Subject(email, name, duty, classNum, "RTK");
     }
 }
