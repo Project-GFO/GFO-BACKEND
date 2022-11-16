@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Builder
 public class User {
     @Id
-    private String email;   // Primary Key
+    private String email;
 
     @Column(nullable = false)
     private String name;
