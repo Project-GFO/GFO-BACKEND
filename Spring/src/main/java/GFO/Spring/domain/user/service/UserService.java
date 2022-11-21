@@ -3,7 +3,11 @@ package GFO.Spring.domain.user.service;
 import GFO.Spring.domain.user.User;
 import GFO.Spring.domain.user.exception.DuplicatedUserClassNumException;
 import GFO.Spring.domain.user.exception.DuplicatedUserEmailException;
+import GFO.Spring.domain.user.exception.EmailNotFoundException;
+import GFO.Spring.domain.user.exception.WrongPasswordException;
+import GFO.Spring.domain.user.presentation.dto.request.SigninRequest;
 import GFO.Spring.domain.user.presentation.dto.request.SignupRequest;
+import GFO.Spring.domain.user.presentation.dto.response.UserResponse;
 import GFO.Spring.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,5 +36,16 @@ public class UserService {
               .classNum(signupRequest.getClassNum())
               .build();
       userRepository.save(user);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public UserResponse signIn(SigninRequest signinRequest) {
+        User user = userRepository
+                .findUserByEmail(signinRequest.getEmail())
+                .orElseThrow(()->new EmailNotFoundException("이메일을 찾지 못했습니다"));
+        if(passwordEncoder.matches(signinRequest.getPassword(), user.getPassword())){
+            throw new WrongPasswordException("비밀번호가 올바르지 않습니다");
+        }
+        return UserResponse.of(user);
     }
 }
