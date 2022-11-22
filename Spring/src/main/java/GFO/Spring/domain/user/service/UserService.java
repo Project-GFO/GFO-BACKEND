@@ -43,7 +43,7 @@ public class UserService {
         User user = userRepository
                 .findUserByEmail(signinRequest.getEmail())
                 .orElseThrow(()->new EmailNotFoundException("이메일을 찾지 못했습니다"));
-        if(passwordEncoder.matches(signinRequest.getPassword(), user.getPassword())){
+        if(!passwordEncoder.matches(signinRequest.getPassword(), user.getPassword())){
             throw new WrongPasswordException("비밀번호가 올바르지 않습니다");
         }
         return UserResponse.of(user);
