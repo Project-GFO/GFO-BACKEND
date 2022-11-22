@@ -23,7 +23,7 @@ public class JwtProvider {
     @Value("${spring.jwt.key}")
     private String key;
 
-    @Value("${spring.jwt.live.atk}")
+    @Value("${spring.jwt.live.accessToken}")
     private Long atkLive;
 
     @PostConstruct
@@ -37,8 +37,8 @@ public class JwtProvider {
                 userResponse.getName(),
                 userResponse.getDuty(),
                 userResponse.getClassNum());
-        String atk = createToken(atkSubject, atkLive);
-        return new TokenResponse(atk, null);
+        String accessToken = createToken(atkSubject, atkLive);
+        return new TokenResponse(accessToken, null);
     }
 
     private String createToken(Subject subject, Long tokenLive) throws JsonProcessingException {
