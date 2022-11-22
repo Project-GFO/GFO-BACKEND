@@ -14,35 +14,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig  {
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable();
-        http
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/business-cards").permitAll()
-                .antMatchers(HttpMethod.POST,
-                        "/auth/register",
-                        "/auth",
-                        "/user",
-                        "/email"
-                ).permitAll()
-                .antMatchers(HttpMethod.PATCH, "/auth").permitAll()
-                .antMatchers(HttpMethod.HEAD,
-                        "/email"
-                ).permitAll()
-                .antMatchers(HttpMethod.PATCH,"/user").authenticated()
+                .antMatchers("/auth/register/", "/auth/login/").permitAll()
                 .anyRequest().authenticated();
-        http
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        //http
-                //.exceptionHandling()
-                //.accessDeniedHandler(new CustomAccessDeniedHandler())
-                //.authenticationEntryPoint(new CustomAuthenticationEntryPointHandler());
-        //http
-                //.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
+        return httpSecurity.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
