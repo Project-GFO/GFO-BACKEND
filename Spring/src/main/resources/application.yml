@@ -18,3 +18,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
 
+  jwt:
+    key: secret-key
+    live:
+      accessToken: 300000
