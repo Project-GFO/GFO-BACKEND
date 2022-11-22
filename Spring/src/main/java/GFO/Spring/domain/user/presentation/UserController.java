@@ -21,13 +21,13 @@ public class UserController {
     private final UserService userService;
     private final JwtProvider jwtProvider;
 
-    @PostMapping("/register")
+    @PostMapping("/register/")
     public ResponseEntity<Void> signUp(@Valid @RequestBody SignupRequest signupRequest) {
         userService.signUp(signupRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login/")
     public TokenResponse SignIn(@Valid @RequestBody SigninRequest signinRequest) throws JsonProcessingException {
         UserResponse userResponse = userService.signIn(signinRequest);
         return jwtProvider.createTokensByLogin(userResponse);
