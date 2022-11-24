@@ -7,19 +7,16 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/email")
 public class HomeController {
     private final EmailService emailService;
 
     //인증
-    // 커밋 실수로 주석한번 답니다.
-    @PostMapping("/emailConfirm"
-    )
+    @PostMapping("/confirm/{email}")
     @ApiOperation(value = "회원 가입시 이메인 인증", notes = "기존사용하고 있는 이메일을 통해 인증")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공"),
@@ -28,7 +25,7 @@ public class HomeController {
             @ApiResponse(code = 500, message = "서버 오류")
     })
     public ResponseEntity<Void> emailConfirm(
-            @RequestBody @ApiParam(value="이메일정보 정보", required = true) String email) throws Exception {
+            @PathVariable @ApiParam(value="이메일정보 정보", required = true) String email) throws Exception {
 
         String confirm = emailService.sendSimpleMessage(email);
 
