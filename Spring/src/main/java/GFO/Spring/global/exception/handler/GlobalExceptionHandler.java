@@ -1,9 +1,9 @@
 package GFO.Spring.global.exception.handler;
 
-import GFO.Spring.domain.user.exception.DuplicatedUserClassNumException;
-import GFO.Spring.domain.user.exception.DuplicatedUserEmailException;
-import GFO.Spring.domain.user.exception.EmailNotFoundException;
-import GFO.Spring.domain.user.exception.WrongPasswordException;
+import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserClassNumException;
+import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserEmailException;
+import GFO.Spring.domain.user.exception.exceptioncollection.EmailNotFoundException;
+import GFO.Spring.domain.user.exception.exceptioncollection.WrongPasswordException;
 import GFO.Spring.global.exception.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
