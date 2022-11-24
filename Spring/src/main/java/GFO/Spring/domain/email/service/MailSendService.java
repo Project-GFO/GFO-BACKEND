@@ -55,7 +55,7 @@ public class MailSendService implements EmailService{
     @Override
     public String sendSimpleMessage(String to)throws Exception {
         MimeMessage message = createMessage(to);
-        try{//예외처리
+        try{
             emailSender.send(message);
         }catch(MailException es){
             es.printStackTrace();
