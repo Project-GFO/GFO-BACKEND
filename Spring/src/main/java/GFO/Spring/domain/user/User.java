@@ -1,16 +1,21 @@
-package GFO.Spring.domain;
+package GFO.Spring.domain.user;
 
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
-@Getter @NoArgsConstructor @Entity
-public class Student {
+@Entity @Getter
+@Table(name = "member")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User {
     @Id
-    private String email;   // Primary Key
+    private String email;
 
     @Column(nullable = false)
     private String name;
@@ -22,5 +27,5 @@ public class Student {
     private String duty;
 
     @Column(nullable = false)
-    private int classnum;
+    private Integer classNum;
 }
