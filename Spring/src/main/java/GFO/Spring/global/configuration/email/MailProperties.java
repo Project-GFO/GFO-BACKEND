@@ -1,4 +1,4 @@
-package GFO.Spring.configuration;
+package GFO.Spring.global.configuration.email;
 
 
 import lombok.AllArgsConstructor;

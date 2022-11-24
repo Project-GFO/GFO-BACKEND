@@ -1,4 +1,4 @@
-package GFO.Spring.service;
+package GFO.Spring.domain.email.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.MailException;

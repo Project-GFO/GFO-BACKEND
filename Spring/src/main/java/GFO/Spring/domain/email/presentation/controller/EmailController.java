@@ -1,6 +1,6 @@
-package GFO.Spring.controller;
+package GFO.Spring.domain.email.presentation.controller;
 
-import GFO.Spring.service.EmailService;
+import GFO.Spring.domain.email.service.EmailService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/email")
-public class HomeController {
+public class EmailController {
     private final EmailService emailService;
 
     //인증
