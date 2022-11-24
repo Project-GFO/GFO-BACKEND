@@ -6,8 +6,8 @@ import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserClassN
 import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserEmailException;
 import GFO.Spring.domain.user.exception.exceptioncollection.EmailNotFoundException;
 import GFO.Spring.domain.user.exception.exceptioncollection.WrongPasswordException;
-import GFO.Spring.domain.user.presentation.dto.request.SigninRequest;
-import GFO.Spring.domain.user.presentation.dto.request.SignupRequest;
+import GFO.Spring.domain.user.presentation.dto.request.SignInRequest;
+import GFO.Spring.domain.user.presentation.dto.request.SignUpRequest;
 import GFO.Spring.domain.user.presentation.dto.response.SignInResponse;
 import GFO.Spring.domain.user.repository.RefreshTokenRepository;
 import GFO.Spring.domain.user.repository.UserRepository;
@@ -28,7 +28,7 @@ public class UserService {
     private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
-    public void signUp(SignupRequest signupRequest) {
+    public void signUp(SignUpRequest signupRequest) {
       if(userRepository.existsByEmail(signupRequest.getEmail())) {
           throw new DuplicatedUserEmailException("이메일이 중복되었습니다");
       }
@@ -46,7 +46,7 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public SignInResponse signIn(SigninRequest signinRequest) {
+    public SignInResponse signIn(SignInRequest signinRequest) {
         User user = userRepository
                 .findUserByEmail(signinRequest.getEmail())
                 .orElseThrow(()->new EmailNotFoundException("이메일을 찾지 못했습니다"));

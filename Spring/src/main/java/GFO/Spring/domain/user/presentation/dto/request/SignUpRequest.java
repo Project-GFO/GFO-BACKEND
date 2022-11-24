@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 
 @Getter
 @RequiredArgsConstructor
-public class SignupRequest {
+public class SignUpRequest {
 
     @Email
     @NotBlank(message = "이메일은 필수 입력값입니다")
