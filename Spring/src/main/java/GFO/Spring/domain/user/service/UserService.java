@@ -12,7 +12,6 @@ import GFO.Spring.domain.user.presentation.dto.response.SignInResponse;
 import GFO.Spring.domain.user.repository.RefreshTokenRepository;
 import GFO.Spring.domain.user.repository.UserRepository;
 import GFO.Spring.global.security.jwt.JwtProvider;
-import GFO.Spring.global.security.jwt.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ public class UserService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
-    private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
     public void signUp(SignUpRequest signupRequest) {
@@ -39,8 +37,8 @@ public class UserService {
               .email(signupRequest.getEmail())
               .name(signupRequest.getName())
               .password(passwordEncoder.encode(signupRequest.getPassword()))
-              .duty(signupRequest.getDuty())
               .classNum(signupRequest.getClassNum())
+              .duty(signupRequest.getDuty())
               .build();
       userRepository.save(user);
     }
@@ -60,7 +58,7 @@ public class UserService {
         return SignInResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(jwtProvider.getExpiredAtToken(accessToken, jwtProperties.getAccessSecret()))
+                .expiredAt(jwtProvider.getExpiredAtToken())
                 .build();
     }
 }
