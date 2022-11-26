@@ -21,8 +21,8 @@ import java.util.Date;
 @Getter
 public class JwtProvider {
     private final JwtProperties jwtProperties;
-    private final long ACCESS_TOKEN_EXPIRE_TIME = 1000*60*120;
-    private final long REFRESH_TOKEN_EXPIRE_TIME = ACCESS_TOKEN_EXPIRE_TIME*12*7;
+    private final long ACCESS_TOKEN_EXPIRE_TIME = 60*120;
+    private final long REFRESH_TOKEN_EXPIRE_TIME = ACCESS_TOKEN_EXPIRE_TIME*12;
 
     @AllArgsConstructor
     private enum TokenType {
@@ -43,28 +43,6 @@ public class JwtProvider {
         return Keys.hmacShaKeyFor(bytes);
     }
 
-//    public TokenResponse createTokensByLogin(UserResponse userResponse) throws JsonProcessingException {
-//        Subject atkSubject = Subject.accessToken(
-//                userResponse.getEmail(),
-//                userResponse.getName(),
-//                userResponse.getDuty(),
-//                userResponse.getClassNum());
-//        String accessToken = createToken(atkSubject, atkLive);
-//        return new TokenResponse(accessToken, null);
-//    }
-//    private String createToken(Subject subject, Long tokenLive) throws JsonProcessingException {
-//        String subjectStr = objectMapper.writeValueAsString(subject);
-//        Claims claims = Jwts.claims()
-//                .setSubject(subjectStr);
-//        Date date = new Date();
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .setIssuedAt(date)
-//                .setExpiration(new Date(date.getTime()+tokenLive))
-//                .signWith(SignatureAlgorithm.HS256, key)
-//                .compact();
-//    }
-
     private String generateToken(String userEmail, TokenType tokenType, String secret, long expireTime) {
         final Claims claims = Jwts.claims();
         claims.put(TokenClaimName.USER_EMAIL.value, userEmail);
@@ -73,12 +51,12 @@ public class JwtProvider {
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+expireTime))
-                .signWith(getSignInKey(secret), SignatureAlgorithm.ES256)
+                .signWith(getSignInKey(secret), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public Claims extractAllClaims(String token, String secret) {
-        token = token.replace("Bearer", "");
+        token.replace("Bearer ", "");
         try{
             return Jwts.parserBuilder()
                     .setSigningKey(getSignInKey(secret))
@@ -92,7 +70,7 @@ public class JwtProvider {
         }
     }
 
-    public ZonedDateTime getExpiredAtToken(String token, String secret) {
+    public ZonedDateTime getExpiredAtToken() {
         return ZonedDateTime.now().plusSeconds(ACCESS_TOKEN_EXPIRE_TIME);
     }
 
