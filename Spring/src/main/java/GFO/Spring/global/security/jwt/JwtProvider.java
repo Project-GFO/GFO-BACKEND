@@ -56,7 +56,7 @@ public class JwtProvider {
     }
 
     public Claims extractAllClaims(String token, String secret) {
-            validateTokenType(token);
+            token = validateTokenType(token);
         try{
             return Jwts.parserBuilder()
                     .setSigningKey(getSignInKey(secret))
