@@ -56,7 +56,7 @@ public class JwtProvider {
     }
 
     public Claims extractAllClaims(String token, String secret) {
-        token.replace("Bearer ", "");
+            validateTokenType(token);
         try{
             return Jwts.parserBuilder()
                     .setSigningKey(getSignInKey(secret))
@@ -68,6 +68,13 @@ public class JwtProvider {
         } catch (JwtException e) {
             throw new TokenNotValidException("토큰이 올바르지 않습니다.");
         }
+    }
+
+    public String validateTokenType(String token){
+        if (token.startsWith("Bearer ")){
+            return token.replace("Bearer ", "");
+        }
+        return null;
     }
 
     public ZonedDateTime getExpiredAtToken() {
