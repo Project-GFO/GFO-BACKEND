@@ -11,7 +11,6 @@ import GFO.Spring.domain.user.repository.BlackListRepository;
 import GFO.Spring.domain.user.repository.RefreshTokenRepository;
 import GFO.Spring.domain.user.repository.UserRepository;
 import GFO.Spring.global.security.jwt.JwtProvider;
-import GFO.Spring.global.security.jwt.properties.JwtProperties;
 import GFO.Spring.global.util.UserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,7 +28,6 @@ public class UserService {
     private final BlackListRepository blackListRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
-    private final JwtProperties jwtProperties;
     private final UserUtil userUtil;
     private final RedisTemplate redisTemplate;
 
@@ -75,6 +73,7 @@ public class UserService {
         User user = userUtil.currentUser();
         RefreshToken refreshToken = refreshTokenRepository.findRefreshTokenByEmail(user.getEmail()).orElseThrow(()-> new RefreshTokenNotFoundException("리프레시 토큰을 찾을 수 없습니다"));
         refreshTokenRepository.delete(refreshToken);
+        saveBlackList(user.getEmail(), accessToken);
     }
     private void saveBlackList(String email, String accessToken) {
         if(redisTemplate.opsForValue().get(accessToken)!=null) {
