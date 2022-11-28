@@ -1,29 +1,37 @@
 package GFO.Spring.domain.user.service;
 
+import GFO.Spring.domain.user.entity.BlackList;
 import GFO.Spring.domain.user.entity.RefreshToken;
 import GFO.Spring.domain.user.entity.User;
-import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserClassNumException;
-import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserEmailException;
-import GFO.Spring.domain.user.exception.exceptioncollection.EmailNotFoundException;
-import GFO.Spring.domain.user.exception.exceptioncollection.WrongPasswordException;
+import GFO.Spring.domain.user.exception.exceptioncollection.*;
 import GFO.Spring.domain.user.presentation.dto.request.SignInRequest;
 import GFO.Spring.domain.user.presentation.dto.request.SignUpRequest;
 import GFO.Spring.domain.user.presentation.dto.response.SignInResponse;
+import GFO.Spring.domain.user.repository.BlackListRepository;
 import GFO.Spring.domain.user.repository.RefreshTokenRepository;
 import GFO.Spring.domain.user.repository.UserRepository;
 import GFO.Spring.global.security.jwt.JwtProvider;
+import GFO.Spring.global.security.jwt.properties.JwtProperties;
+import GFO.Spring.global.util.UserUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.ZonedDateTime;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final BlackListRepository blackListRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final JwtProperties jwtProperties;
+    private final UserUtil userUtil;
+    private final RedisTemplate redisTemplate;
 
     @Transactional(rollbackFor = Exception.class)
     public void signUp(SignUpRequest signupRequest) {
@@ -60,5 +68,24 @@ public class UserService {
                 .refreshToken(refreshToken)
                 .expiredAt(jwtProvider.getExpiredAtToken())
                 .build();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void logout(String accessToken) {
+        User user = userUtil.currentUser();
+        RefreshToken refreshToken = refreshTokenRepository.findRefreshTokenByEmail(user.getEmail()).orElseThrow(()-> new RefreshTokenNotFoundException("리프레시 토큰을 찾을 수 없습니다"));
+        refreshTokenRepository.delete(refreshToken);
+    }
+    private void saveBlackList(String email, String accessToken) {
+        if(redisTemplate.opsForValue().get(accessToken)!=null) {
+            throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다");
+        }
+        ZonedDateTime accessTokenExpire = jwtProvider.getExpiredAtToken();
+        BlackList blackList = BlackList.builder()
+                .email(email)
+                .accessToken(accessToken)
+                .timeToLive(accessTokenExpire)
+                .build();
+        blackListRepository.save(blackList);
     }
 }
