@@ -4,11 +4,11 @@ import GFO.Spring.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserNotFoundException extends RuntimeException{
+public class RefreshTokenNotFoundException extends RuntimeException {
     private final ErrorCode errorCode;
 
-    public UserNotFoundException(String message) {
+    public RefreshTokenNotFoundException(String message) {
         super(message);
-        this.errorCode = ErrorCode.USER_NOT_FOUND;
+        this.errorCode = ErrorCode.REFRESH_TOKEN_NOT_FOUND;
     }
 }
