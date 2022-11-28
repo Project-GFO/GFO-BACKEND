@@ -1,4 +1,4 @@
-package GFO.Spring.domain.user.exception;
+package GFO.Spring.domain.user.exception.exceptioncollection;
 
 
 import GFO.Spring.global.exception.ErrorCode;

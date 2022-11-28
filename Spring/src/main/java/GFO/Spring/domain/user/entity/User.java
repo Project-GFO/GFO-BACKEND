@@ -1,4 +1,4 @@
-package GFO.Spring.domain.user;
+package GFO.Spring.domain.user.entity;
 
 import lombok.*;
 

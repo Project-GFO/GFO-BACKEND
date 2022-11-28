@@ -1,7 +1,9 @@
 package GFO.Spring.global.exception.handler;
 
-import GFO.Spring.domain.user.exception.DuplicatedUserClassNumException;
-import GFO.Spring.domain.user.exception.DuplicatedUserEmailException;
+import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserClassNumException;
+import GFO.Spring.domain.user.exception.exceptioncollection.DuplicatedUserEmailException;
+import GFO.Spring.domain.user.exception.exceptioncollection.EmailNotFoundException;
+import GFO.Spring.domain.user.exception.exceptioncollection.WrongPasswordException;
 import GFO.Spring.global.exception.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DuplicatedUserEmailException.class)
     public ResponseEntity<ErrorResponse> DuplicatedUserEmail(DuplicatedUserEmailException exception) {
+        ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+    @ExceptionHandler(EmailNotFoundException.class)
+    public ResponseEntity<ErrorResponse> EmailNotFound(EmailNotFoundException exception) {
+        ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(WrongPasswordException.class)
+    public ResponseEntity<ErrorResponse> WrongPassword(WrongPasswordException exception) {
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
