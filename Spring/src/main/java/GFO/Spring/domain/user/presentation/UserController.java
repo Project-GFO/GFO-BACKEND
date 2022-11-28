@@ -29,4 +29,10 @@ public class UserController {
         SignInResponse data = userService.signIn(signinRequest);
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
+
+    @DeleteMapping("/logout")
+    public ResponseEntity<Void> logout(@Valid @RequestHeader("Authorization")String accessToken){
+        userService.logout(accessToken);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
