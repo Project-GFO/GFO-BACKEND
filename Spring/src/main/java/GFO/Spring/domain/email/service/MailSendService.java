@@ -1,67 +1,75 @@
 package GFO.Spring.domain.email.service;
 
+import GFO.Spring.domain.user.User;
+import GFO.Spring.domain.user.presentation.dto.UserDto;
+import GFO.Spring.domain.user.repository.UserRepository;
+import GFO.Spring.global.MailUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.Message.RecipientType;
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class MailSendService implements EmailService{
-
-    private final JavaMailSender emailSender;
-
-    public static final StringBuffer key = new StringBuffer();
-    public static final Random random = new Random();
-    public static final String ePw = createKey();
-
-    private MimeMessage createMessage(String to)throws Exception{
-        System.out.println("ePw = " + ePw);
-        System.out.println("보내는 대상 : "+ to);
-        System.out.println("인증 번호 : "+ePw);
-        MimeMessage  message = emailSender.createMimeMessage();
-        System.out.println("RecipientType.TO = " + RecipientType.TO);
-        message.addRecipients(RecipientType.TO, to);//보내는 대상
-        message.setSubject("G4 회원가입 이메일 인증");//제목
-
-        String msgg="";
-        msgg+= "<div style='margin:100px;'>";
-        msgg+= "<h1> 안녕하세요 GFO입니다. </h1>";
-        msgg+= "<br>";
-        msgg+= "<p>아래 코드를 회원가입 창으로 돌아가 입력해주세요<p>";
-        msgg+= "<br>";
-        msgg+= "<p>감사합니다<p>";
-        msgg+= "<br>";
-        msgg+= "<div align='center' style='border:1px solid black; font-family:verdana';>";
-        msgg+= "<h3 style='color:blue;'>회원가입 인증 코드입니다.</h3>";
-        msgg+= "<div style='font-size:130%'>";
-        msgg+= "CODE : <strong>";
-        msgg+= ePw+"</strong><div><br/> ";
-        msgg+= "</div>";
-        message.setText(msgg, "utf-8", "html");//내용
-
-        return message;
+    private JavaMailSenderImpl mailSender;
+    private UserRepository userRepository;
+    // 난수의 크기 지정 변수.
+    private int size;
+    //인증 키 생성
+    private String getKey(int size){
+        this.size = size;
+        return getAuthCode();
     }
 
-    public static String createKey() {
-        String[] split = UUID.randomUUID().toString().split("-");
-        return split[1]+split[0];
-    }
-    @Override
-    public String sendSimpleMessage(String to)throws Exception {
-        MimeMessage message = createMessage(to);
-        try{
-            emailSender.send(message);
-        }catch(MailException es){
-            es.printStackTrace();
-            throw new IllegalArgumentException();
+    //인증코드 난수 발생
+    private String getAuthCode() {
+        Random random = new Random();
+        StringBuffer buffer = new StringBuffer();
+        int num = 0;
+
+        while (buffer.length() < size){
+            num = random.nextInt(10);
+            buffer.append(num);
         }
-        return ePw;
+        return buffer.toString();
+    }
+
+    //인증메일 보내기
+    public String sendAuthMail(String email) {
+        //6자리 난수 인증번호 생성
+        String authKey = getKey(6);
+
+        //인증메일 보내기
+        try {
+            MailUtils sendMail = new MailUtils(mailSender);
+            sendMail.setSubject("회원가입 이메일 인증");
+            sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+                    .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+                    .append("<a href='http://localhost:8080/user/member/signUpConfirm?email=")
+                    .append(email)
+                    .append("' target='_blenk'>이메일 인증 확인</a>")
+                    .toString());
+            sendMail.setFrom("s22055@gsm.hs.kr" , "채종인");
+            sendMail.setTo(email);
+            sendMail.send();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return authKey;
     }
 
 }

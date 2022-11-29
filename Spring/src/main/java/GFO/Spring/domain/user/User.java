@@ -28,4 +28,7 @@ public class User {
 
     @Column(nullable = false)
     private Integer classNum;
+
+    @Column
+    private boolean authStatus = false;
 }
