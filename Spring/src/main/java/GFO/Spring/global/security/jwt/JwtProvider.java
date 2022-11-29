@@ -2,6 +2,7 @@ package GFO.Spring.global.security.jwt;
 
 import GFO.Spring.global.exception.exceptioncollection.TokenExpirationException;
 import GFO.Spring.global.exception.exceptioncollection.TokenNotValidException;
+import GFO.Spring.global.security.auth.AuthDetailsService;
 import GFO.Spring.global.security.jwt.properties.JwtProperties;
 
 import io.jsonwebtoken.*;
@@ -9,6 +10,8 @@ import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
@@ -20,6 +23,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Getter
 public class JwtProvider {
+    private final AuthDetailsService authDetailsService;
     private final JwtProperties jwtProperties;
     private final long ACCESS_TOKEN_EXPIRE_TIME = 60*120;
     private final long REFRESH_TOKEN_EXPIRE_TIME = ACCESS_TOKEN_EXPIRE_TIME*12;
@@ -95,5 +99,9 @@ public class JwtProvider {
 
     public String generatedRefreshToken(String email) {
         return generateToken(email, TokenType.REFRESH_TOKEN, jwtProperties.getRefreshSecret(), REFRESH_TOKEN_EXPIRE_TIME);
+    }
+    public UsernamePasswordAuthenticationToken authentication(String email) {
+        UserDetails userDetails = authDetailsService.loadUserByUsername(email);
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
