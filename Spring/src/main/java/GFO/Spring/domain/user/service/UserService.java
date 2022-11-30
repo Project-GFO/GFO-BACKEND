@@ -34,5 +34,11 @@ public class UserService {
       userRepository.save(user);
     }
 
+    @Transactional
+    public void updateAuthStatus(String email) {
+        User user = userRepository.findByUserEmail(email).orElseThrow();
+        user.setAuthStatus(true);
+    }
+
 
 }

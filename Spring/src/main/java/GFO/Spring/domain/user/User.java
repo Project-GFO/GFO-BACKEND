@@ -31,4 +31,8 @@ public class User {
 
     @Column
     private boolean authStatus = false;
+
+    public void setAuthStatus(boolean authStatus) {
+        this.authStatus = authStatus;
+    }
 }

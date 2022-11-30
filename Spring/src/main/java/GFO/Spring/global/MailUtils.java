@@ -2,9 +2,10 @@ package GFO.Spring.global;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ws.mime.MimeMessage;
+
 
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.sql.DataSource;
 import java.io.UnsupportedEncodingException;
 
