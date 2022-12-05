@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserUtil {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public User currentUser() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();

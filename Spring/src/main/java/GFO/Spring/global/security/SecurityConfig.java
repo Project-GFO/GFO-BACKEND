@@ -29,12 +29,13 @@ public class SecurityConfig  {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors().and().csrf().disable();
+        httpSecurity
+                .csrf().disable();
 
         httpSecurity
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
-                .antMatchers("/auth/logout").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/auth/logout").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity
@@ -48,6 +49,7 @@ public class SecurityConfig  {
 
         httpSecurity
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 

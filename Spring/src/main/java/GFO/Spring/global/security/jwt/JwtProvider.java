@@ -25,7 +25,7 @@ import java.util.Date;
 public class JwtProvider {
     private final AuthDetailsService authDetailsService;
     private final JwtProperties jwtProperties;
-    private final long ACCESS_TOKEN_EXPIRE_TIME = 60*120;
+    private final long ACCESS_TOKEN_EXPIRE_TIME = 60*120*1000;
     private final long REFRESH_TOKEN_EXPIRE_TIME = ACCESS_TOKEN_EXPIRE_TIME*12;
 
     @AllArgsConstructor
@@ -60,12 +60,11 @@ public class JwtProvider {
     }
 
     public Claims extractAllClaims(String token, String secret) {
-            token = validateTokenType(token);
         try{
             return Jwts.parserBuilder()
                     .setSigningKey(getSignInKey(secret))
                     .build()
-                    .parseClaimsJws(token)
+                    .parseClaimsJws(validateTokenType(token))
                     .getBody();
         } catch (ExpiredJwtException e) {
             throw new TokenExpirationException("The token has expired");
@@ -75,10 +74,7 @@ public class JwtProvider {
     }
 
     public String validateTokenType(String token){
-        if (token.startsWith("Bearer ")){
             return token.replace("Bearer ", "");
-        }
-        return null;
     }
 
     public ZonedDateTime getExpiredAtToken() {

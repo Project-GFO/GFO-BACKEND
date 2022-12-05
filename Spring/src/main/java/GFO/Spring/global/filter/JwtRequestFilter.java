@@ -4,6 +4,7 @@ import GFO.Spring.domain.user.exception.exceptioncollection.BlackListAlreadyExis
 import GFO.Spring.global.exception.exceptioncollection.TokenNotValidException;
 import GFO.Spring.global.security.jwt.JwtProvider;
 import GFO.Spring.global.security.jwt.properties.JwtProperties;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +29,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String accessToken = request.getHeader("Authorization");
         if(accessToken != null) {
-            jwtProvider.extractAllClaims(accessToken, jwtProperties.getAccessSecret());
             if(!jwtProvider.getTokenType(accessToken, jwtProperties.getAccessSecret()).equals("ACCESS_TOKEN"))
                 throw new TokenNotValidException("Token is not valid");
             else if (redisTemplate.opsForValue().get(accessToken)!=null)

@@ -15,7 +15,7 @@ import java.io.IOException;
 public class CustomAuthenticationEntryPointHandler implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        log.error("AUTHENTICATION_ENTRYPOINT");
+        log.info("AUTHENTICATION_ENTRYPOINT");
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }
