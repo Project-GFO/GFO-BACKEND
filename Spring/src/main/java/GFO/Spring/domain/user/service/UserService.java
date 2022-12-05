@@ -18,8 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.ZonedDateTime;
-
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -79,11 +77,10 @@ public class UserService {
         if(redisTemplate.opsForValue().get(accessToken)!=null) {
             throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다");
         }
-        ZonedDateTime accessTokenExpire = jwtProvider.getExpiredAtToken();
         BlackList blackList = BlackList.builder()
                 .email(email)
-                .accessToken(accessToken)
-                .timeToLive(accessTokenExpire)
+                .accessToken(jwtProvider.validateTokenType(accessToken))
+                .timeToLive(jwtProvider.getExpiredAtTokenToLong())
                 .build();
         blackListRepository.save(blackList);
     }
