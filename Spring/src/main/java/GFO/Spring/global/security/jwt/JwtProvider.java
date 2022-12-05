@@ -81,6 +81,10 @@ public class JwtProvider {
         return ZonedDateTime.now().plusSeconds(ACCESS_TOKEN_EXPIRE_TIME);
     }
 
+    public long getExpiredAtTokenToLong() {
+        return ACCESS_TOKEN_EXPIRE_TIME/1000l;
+    }
+
     public String getUserEmail(String token, String secret) {
         return extractAllClaims(token, secret).get(TokenClaimName.USER_EMAIL.value, String.class);
     }
