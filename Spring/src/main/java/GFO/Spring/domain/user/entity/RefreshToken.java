@@ -16,14 +16,14 @@ import org.springframework.data.redis.core.index.Indexed;
 @ToString
 @RedisHash(value = "refreshToken")
 public class RefreshToken {
-    @Id
+    @Indexed
     private String email;
 
-    @Indexed
+    @Id
     private String token;
 
     @TimeToLive
-    private long expiredAt;
+    private Long expiredAt;
 
     public void exchangeRefreshToken(String token) {
         this.token = token;
