@@ -18,19 +18,19 @@ public class UserController {
     private final UserService userService;
 
 
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<Void> signUp(@Valid @RequestBody SignUpRequest signupRequest) {
         userService.signUp(signupRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping
     public ResponseEntity<SignInResponse> signIn(@Valid @RequestBody SignInRequest signinRequest) {
         SignInResponse data = userService.signIn(signinRequest);
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    @DeleteMapping("/logout")
+    @DeleteMapping
     public ResponseEntity<Void> logout(@Valid @RequestHeader("Authorization")String accessToken){
         userService.logout(accessToken);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
