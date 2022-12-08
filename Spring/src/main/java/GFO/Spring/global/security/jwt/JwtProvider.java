@@ -82,7 +82,7 @@ public class JwtProvider {
     }
 
     public long getExpiredAtTokenToLong() {
-        return ACCESS_TOKEN_EXPIRE_TIME/1000l;
+        return ACCESS_TOKEN_EXPIRE_TIME/1000L;
     }
 
     public String getUserEmail(String token, String secret) {
