@@ -1,10 +1,8 @@
 package GFO.Spring.global.filter;
 
 import GFO.Spring.domain.user.exception.exceptioncollection.BlackListAlreadyExistException;
-import GFO.Spring.global.exception.exceptioncollection.TokenNotValidException;
 import GFO.Spring.global.security.jwt.JwtProvider;
 import GFO.Spring.global.security.jwt.properties.JwtProperties;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,25 +20,20 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtProvider jwtProvider;
-    private final JwtProperties jwtProperties;
     private final RedisTemplate redisTemplate;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String accessToken = request.getHeader("Authorization");
-        if(accessToken != null) {
-            if(!jwtProvider.getTokenType(accessToken, jwtProperties.getAccessSecret()).equals("accessToken"))
-                throw new TokenNotValidException("Token is not valid");
-            else if (redisTemplate.opsForValue().get(accessToken)!=null)
+        String token = jwtProvider.resolveToken(request);
+        if(token != null) {
+            if (redisTemplate.opsForValue().get(token)!=null)
                 throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다");
-            String email = jwtProvider.getUserEmail(accessToken, jwtProperties.getAccessSecret());
-            registerSecurityContext(request, email);
+            UsernamePasswordAuthenticationToken auth = jwtProvider.authentication(token);
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
         filterChain.doFilter(request, response);
     }
 
-    private void registerSecurityContext(HttpServletRequest request, String email) {
-        UsernamePasswordAuthenticationToken authenticationToken = jwtProvider.authentication(email);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-    }
+
+
 }

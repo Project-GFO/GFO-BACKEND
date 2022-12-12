@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.ZonedDateTime;
@@ -30,16 +31,8 @@ public class JwtProvider {
 
     @AllArgsConstructor
     private enum TokenType {
-        ACCESS_TOKEN("accessToken"),
-        REFRESH_TOKEN("refreshToken");
-        String value;
-    }
-
-    @AllArgsConstructor
-    private enum TokenClaimName {
-        USER_EMAIL("userEmail"),
-        TOKEN_TYPE("tokenType");
-        String value;
+        ACCESS_TOKEN,
+        REFRESH_TOKEN;
     }
 
     private Key getSignInKey(String secretKey) {
@@ -47,10 +40,11 @@ public class JwtProvider {
         return Keys.hmacShaKeyFor(bytes);
     }
 
-    private String generateToken(String userEmail, TokenType tokenType, String secret, long expireTime) {
+    private String generateToken(String userEmail, String type, String secret, long expireTime) {
+        System.out.println(userEmail);
         final Claims claims = Jwts.claims();
-        claims.put(TokenClaimName.USER_EMAIL.value, userEmail);
-        claims.put(TokenClaimName.TOKEN_TYPE.value, tokenType);
+        claims.put("type", type);
+        claims.put("email", userEmail);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -59,12 +53,12 @@ public class JwtProvider {
                 .compact();
     }
 
-    public Claims extractAllClaims(String token, String secret) {
+    public Claims getTokenBody(String token, String secret) {
         try{
             return Jwts.parserBuilder()
                     .setSigningKey(getSignInKey(secret))
                     .build()
-                    .parseClaimsJws(validateTokenType(token))
+                    .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
             throw new TokenExpirationException("The token has expired");
@@ -74,7 +68,9 @@ public class JwtProvider {
     }
 
     public String validateTokenType(String token){
+        if(token != null && token.startsWith("Bearer "))
             return token.replace("Bearer ", "");
+        return null;
     }
 
     public ZonedDateTime getExpiredAtToken() {
@@ -85,23 +81,24 @@ public class JwtProvider {
         return ACCESS_TOKEN_EXPIRE_TIME/1000L;
     }
 
-    public String getUserEmail(String token, String secret) {
-        return extractAllClaims(token, secret).get(TokenClaimName.USER_EMAIL.value, String.class);
-    }
-
-    public String getTokenType(String token, String secret) {
-        return extractAllClaims(token, secret).get(TokenClaimName.TOKEN_TYPE.value, String.class);
-    }
-
     public String generatedAccessToken(String email) {
-        return generateToken(email, TokenType.ACCESS_TOKEN, jwtProperties.getAccessSecret(), ACCESS_TOKEN_EXPIRE_TIME);
+        return generateToken(email, TokenType.ACCESS_TOKEN.name(), jwtProperties.getAccessSecret(), ACCESS_TOKEN_EXPIRE_TIME);
     }
 
     public String generatedRefreshToken(String email) {
-        return generateToken(email, TokenType.REFRESH_TOKEN, jwtProperties.getRefreshSecret(), REFRESH_TOKEN_EXPIRE_TIME);
+        return generateToken(email, TokenType.REFRESH_TOKEN.name(), jwtProperties.getRefreshSecret(), REFRESH_TOKEN_EXPIRE_TIME);
     }
-    public UsernamePasswordAuthenticationToken authentication(String email) {
-        UserDetails userDetails = authDetailsService.loadUserByUsername(email);
+    public UsernamePasswordAuthenticationToken authentication(String token) {
+        UserDetails userDetails = authDetailsService.loadUserByUsername(getTokenEmail(token, jwtProperties.getAccessSecret()));
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+    }
+
+    public String resolveToken(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        return validateTokenType(token);
+    }
+
+    public String getTokenEmail(String token, String secret) {
+        return getTokenBody(token, secret).get("email", String.class);
     }
 }
