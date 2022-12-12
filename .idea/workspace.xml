@@ -1,37 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4e849f9-8b86-430f-a9fd-b4ec1c0cb9e0" name="변경" comment="" />
+    <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/GFO-BACKEND.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/entity/BlackList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/entity/RefreshToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/BlackListAlreadyExistException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/DuplicatedUserClassNumException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/DuplicatedUserEmailException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/EmailNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/RefreshTokenNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/WrongPasswordException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/dto/request/SignInRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/dto/request/SignUpRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/dto/response/SignInResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/repository/BlackListRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/repository/RefreshTokenRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/exceptioncollection/TokenExpirationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/exceptioncollection/TokenNotValidException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/handler/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/filter/JwtRequestFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/redis/RedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/redis/properties/RedisProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/auth/AuthDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/auth/AuthDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/handler/CustomAccessDeniedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/handler/CustomAuthenticationEntryPointHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/jwt/JwtProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/jwt/properties/JwtProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/util/UserUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Spring/src/test/java/GFO/Spring/ApplicationTests.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="2GiluiUU6F8YmBXLBOC2iWjLvrv" />
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IohuU591MYbDpAF9riFTwCaZD4" />
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/GFO/GFO-BACKEND"
+    "last_opened_file_path": "C:/GFO",
+    "settings.editor.selected.configurable": "spring.boot",
+    "spring.configuration.checksum": "dc87d6ccd749e1fe12e618f120159563"
   }
 }]]></component>
+  <component name="RunManager" selected="Spring Boot.Application">
+    <configuration name="Application (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Spring.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="GFO.Spring.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="Spring.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="GFO.Spring.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="b4e849f9-8b86-430f-a9fd-b4ec1c0cb9e0" name="변경" comment="" />
-      <created>1666879512122</created>
+      <changelist id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="" />
+      <created>1670854066191</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1666879512122</updated>
-      <workItem from="1666879513512" duration="11000" />
+      <updated>1670854066191</updated>
+      <workItem from="1670854067360" duration="1066000" />
+      <workItem from="1670855462570" duration="21000" />
+      <workItem from="1670855495893" duration="49000" />
     </task>
     <servers />
   </component>
@@ -48,5 +145,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
