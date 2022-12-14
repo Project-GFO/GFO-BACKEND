@@ -41,7 +41,6 @@ public class JwtProvider {
     }
 
     private String generateToken(String userEmail, String type, String secret, long expireTime) {
-        System.out.println(userEmail);
         final Claims claims = Jwts.claims();
         claims.put("type", type);
         claims.put("email", userEmail);

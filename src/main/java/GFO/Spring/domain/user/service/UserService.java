@@ -73,6 +73,7 @@ public class UserService {
         refreshTokenRepository.delete(refreshToken);
         saveBlackList(user.getEmail(), accessToken);
     }
+
     private void saveBlackList(String email, String accessToken) {
         if(redisTemplate.opsForValue().get(accessToken)!=null) {
             throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다");
