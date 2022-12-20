@@ -1,12 +1,16 @@
 package GFO.Spring.domain.email.presentation.controller;
 
-import GFO.Spring.domain.email.service.MailSendService;
-import GFO.Spring.domain.user.presentation.dto.UserDto;
-import GFO.Spring.domain.user.presentation.dto.request.SignupRequest;
-import GFO.Spring.domain.user.service.UserService;
+import GFO.Spring.domain.email.presentation.dto.EmailDto;
+import GFO.Spring.domain.email.service.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,23 +18,18 @@ import org.springframework.web.bind.annotation.*;
 public class EmailController {
 
     @Autowired
-    private UserService userService;
-    @Autowired
-    private MailSendService mss;    // mss 는MailSendService 라는 뜻!
+    private MailService mailSendService;
 
-    @PostMapping("/signup")
-    public void signUp(@RequestBody SignupRequest SignupRequest){
-        //DB에 기본 정보 삽입
-        userService.signUp(SignupRequest);
-
-        //authKey 생성  이메일 발송
-        String authKey = mss.sendAuthMail(SignupRequest.getEmail());
+    @PostMapping(value = "/send" , consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> sendEmail(@RequestBody @Valid EmailDto emailDto) {
+        mailSendService.sendMail(emailDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("member/signup-confirm")
-    public void signUpConfirm(@RequestParam String email){
-        userService.updateAuthStatus(email);
-        System.out.println("email = " + email);
+    @RequestMapping(method = RequestMethod.HEAD)
+    public ResponseEntity<Void> mailCheck(@Email @RequestParam String email, @RequestParam String authCode) {
+        mailSendService.verificationMail(email, authCode);
+        return ResponseEntity.ok().build();
     }
 
 }

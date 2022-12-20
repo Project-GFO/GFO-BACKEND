@@ -2,6 +2,13 @@ spring:
   h2:
     console:
       enabled: true
+  redis:
+    host: localhost
+    port: 6379
+
+  jwt:
+    accessSecret: yOeHjKegnwjbli5csZbO1jE9r+qoGkpWgX2JdHjw3tI=
+    refreshSecret: gjX7hf+563vQH/SMDh+K+A3MAbICvd3MtPLk/sZwizw=
 
   datasource:
     url: jdbc:h2:tcp://localhost/~/gsmforum
@@ -17,4 +24,5 @@ spring:
 
     hibernate:
       ddl-auto: create-drop
+
 

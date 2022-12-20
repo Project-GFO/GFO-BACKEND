@@ -19,7 +19,9 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class JwtProvider {
     private final ObjectMapper objectMapper;
-
+    @Value("${spring.jwt.authkey")
+    private String authKey;
+    
     @Value("${spring.jwt.key}")
     private String key;
 
@@ -53,4 +55,9 @@ public class JwtProvider {
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
     }
+
+
+
+
+
 }
