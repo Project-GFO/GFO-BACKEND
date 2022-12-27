@@ -40,10 +40,10 @@ public class JwtProvider {
         return Keys.hmacShaKeyFor(bytes);
     }
 
-    private String generateToken(String Email, String type, String secret, long expireTime) {
+    private String generateToken(String email, String type, String secret, long expireTime) {
         final Claims claims = Jwts.claims();
         claims.put("type", type);
-        claims.put("email", Email);
+        claims.put("email", email);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
