@@ -100,4 +100,8 @@ public class JwtProvider {
     public String getTokenEmail(String token, String secret) {
         return getTokenBody(token, secret).get("email", String.class);
     }
+
+    public String getRefreshTokenEmail(String refreshToken) {
+        return getTokenBody(refreshToken, jwtProperties.getRefreshSecret()).get("email", String.class);
+    }
 }

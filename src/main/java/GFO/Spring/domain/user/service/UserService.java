@@ -34,8 +34,6 @@ public class UserService {
     private final UserUtil userUtil;
     private final RedisTemplate redisTemplate;
 
-    private final JwtProperties jwtProperties;
-
     @Transactional(rollbackFor = Exception.class)
     public void signUp(SignUpRequest signupRequest) {
       if(userRepository.existsByEmail(signupRequest.getEmail())) {
@@ -96,7 +94,7 @@ public class UserService {
 
     @Transactional(rollbackFor = Exception.class)
     public NewTokenResponse tokenReissue(String refreshToken) {
-        String email = jwtProvider.getTokenEmail(refreshToken, jwtProperties.getRefreshSecret());
+        String email = jwtProvider.getRefreshTokenEmail(refreshToken);
 
         RefreshToken token = refreshTokenRepository.findRefreshTokenByEmail(email).orElseThrow(()-> new RefreshTokenNotFoundException("리프레시 토큰이 존재하지 않습니다"));
 
