@@ -2,6 +2,7 @@ package GFO.Spring.domain.user.presentation;
 
 import GFO.Spring.domain.user.presentation.dto.request.SignInRequest;
 import GFO.Spring.domain.user.presentation.dto.request.SignUpRequest;
+import GFO.Spring.domain.user.presentation.dto.response.NewTokenResponse;
 import GFO.Spring.domain.user.presentation.dto.response.SignInResponse;
 import GFO.Spring.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,11 @@ public class UserController {
     public ResponseEntity<Void> logout(@RequestHeader("Authorization")String accessToken){
         userService.logout(accessToken);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping
+    public ResponseEntity<NewTokenResponse> renewToken(@RequestHeader("RefreshToken")String refreshToken) {
+        NewTokenResponse newTokenResponse = userService.tokenReissue(refreshToken);
+        return new ResponseEntity<>(newTokenResponse, HttpStatus.OK);
     }
 }
