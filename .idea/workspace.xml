@@ -4,53 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/GFO-BACKEND.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/entity/BlackList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/entity/RefreshToken.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/BlackListAlreadyExistException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/DuplicatedUserClassNumException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/DuplicatedUserEmailException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/EmailNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/RefreshTokenNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/UserNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/exception/exceptioncollection/WrongPasswordException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/dto/request/SignInRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/dto/request/SignUpRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/presentation/dto/response/SignInResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/repository/BlackListRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/repository/RefreshTokenRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/domain/user/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/ErrorCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/exceptioncollection/TokenExpirationException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/exceptioncollection/TokenNotValidException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/exception/handler/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/filter/JwtRequestFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/redis/RedisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/redis/properties/RedisProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/auth/AuthDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/auth/AuthDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/handler/CustomAccessDeniedHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/handler/CustomAuthenticationEntryPointHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/jwt/JwtProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/security/jwt/properties/JwtProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/main/java/GFO/Spring/global/util/UserUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spring/src/test/java/GFO/Spring/ApplicationTests.java" beforeDir="false" />
-    </list>
+    <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/GFO",
+    "last_opened_file_path": "C:/GFO/GFO-BACKEND",
     "settings.editor.selected.configurable": "spring.boot",
     "spring.configuration.checksum": "dc87d6ccd749e1fe12e618f120159563"
   }
@@ -129,6 +83,7 @@
       <workItem from="1670854067360" duration="1066000" />
       <workItem from="1670855462570" duration="21000" />
       <workItem from="1670855495893" duration="49000" />
+      <workItem from="1671254660028" duration="13000" />
     </task>
     <servers />
   </component>
