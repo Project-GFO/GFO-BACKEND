@@ -2,10 +2,7 @@ package GFO.Spring.domain.user.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity @Getter
@@ -24,8 +21,9 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String duty;
-
-    @Column(nullable = false)
-    private Integer classNum;
+    private Role role;
+    @PrePersist
+    public void setting() {
+        this.role = this.role == null ? Role.STUDENT : this.role;
+    }
 }
