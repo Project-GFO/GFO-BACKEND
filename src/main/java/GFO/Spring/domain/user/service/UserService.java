@@ -13,7 +13,6 @@ import GFO.Spring.domain.user.repository.RefreshTokenRepository;
 import GFO.Spring.domain.user.repository.UserRepository;
 import GFO.Spring.global.exception.exceptioncollection.TokenNotValidException;
 import GFO.Spring.global.security.jwt.JwtProvider;
-import GFO.Spring.global.security.jwt.properties.JwtProperties;
 import GFO.Spring.global.util.UserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

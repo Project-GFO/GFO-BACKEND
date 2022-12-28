@@ -1,6 +1,6 @@
 package GFO.Spring.domain.user.presentation.dto.request;
 
-import GFO.Spring.domain.user.entity.Role;
+import GFO.Spring.domain.user.enums.Role;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

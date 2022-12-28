@@ -1,11 +1,13 @@
 package GFO.Spring.domain.user.entity;
 
+import GFO.Spring.domain.user.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
 
 
-@Entity @Getter
+@Entity
+@Getter
 @Table(name = "member")
 @NoArgsConstructor
 @AllArgsConstructor

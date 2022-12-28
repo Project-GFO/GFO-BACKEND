@@ -1,4 +1,4 @@
-package GFO.Spring.domain.user.entity;
+package GFO.Spring.domain.user.enums;
 
 public enum Role {
 
