@@ -2,7 +2,6 @@ package GFO.Spring.global.filter;
 
 import GFO.Spring.domain.user.exception.exceptioncollection.BlackListAlreadyExistException;
 import GFO.Spring.global.security.jwt.JwtProvider;
-import GFO.Spring.global.security.jwt.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

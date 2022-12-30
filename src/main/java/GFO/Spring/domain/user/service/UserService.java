@@ -13,7 +13,6 @@ import GFO.Spring.domain.user.repository.RefreshTokenRepository;
 import GFO.Spring.domain.user.repository.UserRepository;
 import GFO.Spring.global.exception.exceptioncollection.TokenNotValidException;
 import GFO.Spring.global.security.jwt.JwtProvider;
-import GFO.Spring.global.security.jwt.properties.JwtProperties;
 import GFO.Spring.global.util.UserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -39,15 +38,11 @@ public class UserService {
       if(userRepository.existsByEmail(signupRequest.getEmail())) {
           throw new DuplicatedUserEmailException("이메일이 중복되었습니다");
       }
-      if (userRepository.existsByClassNum(signupRequest.getClassNum())) {
-          throw new DuplicatedUserClassNumException("학번이 중복되었습니다");
-      }
       User user = User.builder()
               .email(signupRequest.getEmail())
               .name(signupRequest.getName())
               .password(passwordEncoder.encode(signupRequest.getPassword()))
-              .classNum(signupRequest.getClassNum())
-              .duty(signupRequest.getDuty())
+              .role(signupRequest.getRole())
               .build();
       userRepository.save(user);
     }
