@@ -23,7 +23,9 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
+
     @PrePersist
     public void setting() {
         this.role = this.role == null ? Role.STUDENT : this.role;
