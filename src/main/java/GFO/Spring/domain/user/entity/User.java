@@ -1,9 +1,11 @@
 package GFO.Spring.domain.user.entity;
 
+import GFO.Spring.domain.post.entity.Post;
 import GFO.Spring.domain.user.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -25,6 +27,9 @@ public class User {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
+    private List<Post> post;
 
     @PrePersist
     public void setting() {
