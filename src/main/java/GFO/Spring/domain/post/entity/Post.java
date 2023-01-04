@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @Getter
 @Builder
-@Table(name = "post")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
@@ -24,7 +23,7 @@ public class Post {
     @Column(nullable = false, name = "content")
     private String content;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
+    @OneToMany(mappedBy = "post")
     private List<Attachment> attachment;
 
     @ManyToOne(cascade = CascadeType.REMOVE)

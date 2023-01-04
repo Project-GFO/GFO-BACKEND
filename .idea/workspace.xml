@@ -50,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/GFO/GFO-BACKEND",
+    "last_opened_file_path": "C:/YAML-BACKEND",
     "settings.editor.selected.configurable": "spring.boot",
     "spring.configuration.checksum": "dc87d6ccd749e1fe12e618f120159563"
   }
@@ -84,6 +84,7 @@
       <workItem from="1670855462570" duration="21000" />
       <workItem from="1670855495893" duration="49000" />
       <workItem from="1671254660028" duration="13000" />
+      <workItem from="1672806774182" duration="14000" />
     </task>
     <servers />
   </component>
