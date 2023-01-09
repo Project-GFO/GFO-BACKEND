@@ -75,7 +75,7 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    private void saveBlackList(String email, String accessToken) {
+    public void saveBlackList(String email, String accessToken) {
         if(redisTemplate.opsForValue().get(accessToken)!=null) {
             throw new BlackListAlreadyExistException("블랙리스트에 이미 등록되어있습니다");
         }

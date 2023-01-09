@@ -26,7 +26,7 @@ import java.util.Date;
 public class JwtProvider {
     private final AuthDetailsService authDetailsService;
     private final JwtProperties jwtProperties;
-    private final long ACCESS_TOKEN_EXPIRE_TIME = 60*120*1000;
+    private final long ACCESS_TOKEN_EXPIRE_TIME = 60*120;
     private final long REFRESH_TOKEN_EXPIRE_TIME = ACCESS_TOKEN_EXPIRE_TIME*12;
 
     @AllArgsConstructor
@@ -47,7 +47,7 @@ public class JwtProvider {
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+expireTime))
+                .setExpiration(new Date(System.currentTimeMillis()+expireTime*1000))
                 .signWith(getSignInKey(secret), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -77,7 +77,7 @@ public class JwtProvider {
     }
 
     public long getExpiredAtTokenToLong() {
-        return ACCESS_TOKEN_EXPIRE_TIME/1000L;
+        return ACCESS_TOKEN_EXPIRE_TIME;
     }
 
     public String generatedAccessToken(String email) {
