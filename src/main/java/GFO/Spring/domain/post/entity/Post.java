@@ -15,18 +15,18 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    private String postId;
+    private Long postId;
 
-    @Column(nullable = false, name = "title")
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, name = "content")
+    @Column(nullable = false)
     private String content;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
     private List<Attachment> attachment;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "member")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }

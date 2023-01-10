@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GFO-BACKEND.iml" filepath="$PROJECT_DIR$/.idea/GFO-BACKEND.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Spring.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Spring.main.iml" />
     </modules>
   </component>
 </project>
