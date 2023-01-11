@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Builder
-@Table(name = "attachment")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Attachment {

@@ -5,6 +5,7 @@ import GFO.Spring.domain.user.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,7 +29,7 @@ public class User {
     private Role role;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
-    private List<Post> post;
+    private List<Post> post = new ArrayList<>();
 
     @PrePersist
     public void setting() {

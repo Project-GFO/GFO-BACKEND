@@ -3,6 +3,7 @@ package GFO.Spring.domain.post.entity;
 import GFO.Spring.domain.user.entity.User;
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Post {
     private String content;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
-    private List<Attachment> attachment;
+    private List<Attachment> attachment = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
