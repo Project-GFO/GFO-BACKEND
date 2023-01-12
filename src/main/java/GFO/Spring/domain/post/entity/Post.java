@@ -3,6 +3,7 @@ package GFO.Spring.domain.post.entity;
 import GFO.Spring.domain.user.entity.User;
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,18 +16,18 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
-    private String postId;
+    private Long postId;
 
-    @Column(nullable = false, name = "title")
+    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, name = "content")
+    @Column(nullable = false)
     private String content;
 
-    @OneToMany(mappedBy = "post")
-    private List<Attachment> attachment;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
+    private List<Attachment> attachment = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "member")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
