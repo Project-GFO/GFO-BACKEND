@@ -34,7 +34,7 @@ public class SecurityConfig  {
 
         httpSecurity
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/auth/signup", "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/signup", "/auth", "/post").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/auth").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth").permitAll()
                 .anyRequest().authenticated();

@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Attachment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/presentation/dto/request/WritePostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/presentation/dto/request/WritePostRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/service/WriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/service/WriteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/global/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/global/security/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +28,25 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Spring" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +71,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2IohuU591MYbDpAF9riFTwCaZD4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -65,7 +86,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/YAML-BACKEND&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gimtaeo/rack/MSG/GFO-BACKEND&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -117,6 +138,10 @@
       <workItem from="1673249342117" duration="5287000" />
       <workItem from="1673337328242" duration="3875000" />
       <workItem from="1673350703833" duration="6939000" />
+      <workItem from="1673520464295" duration="9675000" />
+      <workItem from="1673880711097" duration="11000" />
+      <workItem from="1673966963440" duration="24000" />
+      <workItem from="1674041925153" duration="6072000" />
     </task>
     <servers />
   </component>

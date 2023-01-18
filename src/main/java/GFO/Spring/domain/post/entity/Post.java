@@ -24,10 +24,7 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
-    private List<Attachment> attachment = new ArrayList<>();
-
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "email")
     private User user;
 }

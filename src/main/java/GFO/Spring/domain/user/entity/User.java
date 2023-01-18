@@ -28,9 +28,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
-    private List<Post> post = new ArrayList<>();
-
     @PrePersist
     public void setting() {
         this.role = this.role == null ? Role.STUDENT : this.role;

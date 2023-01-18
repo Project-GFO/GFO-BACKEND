@@ -23,4 +23,9 @@ public class Attachment {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+
+    public Attachment(String contentFileURL, Post post) {
+        this.contentFileURL = contentFileURL;
+        this.post = post;
+    }
 }
