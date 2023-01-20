@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Attachment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/presentation/dto/request/WritePostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/presentation/dto/request/WritePostRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/service/WriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/service/WriteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/global/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/global/security/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +136,8 @@
       <workItem from="1673880711097" duration="11000" />
       <workItem from="1673966963440" duration="24000" />
       <workItem from="1674041925153" duration="6072000" />
+      <workItem from="1674191757872" duration="3000" />
+      <workItem from="1674191775488" duration="7000" />
     </task>
     <servers />
   </component>
