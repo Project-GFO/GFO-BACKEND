@@ -31,11 +31,12 @@ public class WriteServiceImpl implements WriteService {
                 .user(user)
                 .build();
 
+        postRepository.save(post);
+
         List<Attachment> attachments = writePostRequest.getContentFileURLs().stream()
                 .map(att -> new Attachment(att ,post))
                 .collect(Collectors.toList());
-
-        postRepository.save(post);
+        
         attachmentRepository.saveAll(attachments);
     }
 }
