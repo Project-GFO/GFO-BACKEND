@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="" />
+    <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/global/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/global/security/SecurityConfig.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,6 +141,7 @@
       <workItem from="1674191757872" duration="3000" />
       <workItem from="1674191775488" duration="7000" />
       <workItem from="1674191793533" duration="328000" />
+      <workItem from="1674481122201" duration="1831000" />
     </task>
     <servers />
   </component>
