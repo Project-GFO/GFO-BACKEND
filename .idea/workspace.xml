@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1397b2df-c1ed-4c30-8455-10b22132f907" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/entity/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/repository/AttachmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/post/repository/AttachmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/BlackList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/BlackList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GFO/Spring/domain/user/entity/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +143,8 @@
       <workItem from="1674191757872" duration="3000" />
       <workItem from="1674191775488" duration="7000" />
       <workItem from="1674191793533" duration="328000" />
-      <workItem from="1674481122201" duration="4047000" />
+      <workItem from="1674481122201" duration="4747000" />
+      <workItem from="1674718719206" duration="799000" />
     </task>
     <servers />
   </component>
