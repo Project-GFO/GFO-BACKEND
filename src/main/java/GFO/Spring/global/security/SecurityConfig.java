@@ -37,6 +37,8 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.POST, "/auth/signup", "/auth").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/auth").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/post").authenticated()
                 .anyRequest().authenticated();
 
         httpSecurity

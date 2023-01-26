@@ -1,12 +1,12 @@
 package GFO.Spring.domain.user.entity;
 
-import GFO.Spring.domain.post.entity.Post;
 import GFO.Spring.domain.user.enums.Role;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -27,9 +27,6 @@ public class User {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
-    private List<Post> post = new ArrayList<>();
 
     @PrePersist
     public void setting() {

@@ -1,10 +1,12 @@
 package GFO.Spring.domain.post.entity;
 
 import GFO.Spring.domain.user.entity.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -24,10 +26,7 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
-    private List<Attachment> attachment = new ArrayList<>();
-
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "email")
     private User user;
 }
