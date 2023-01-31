@@ -4,11 +4,11 @@ import GFO.Spring.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class EmailSendFailedException extends RuntimeException{
+public class AuthCodeMismatchException extends RuntimeException {
     private final ErrorCode errorCode;
 
-    public EmailSendFailedException(String message) {
+    public AuthCodeMismatchException(String message) {
         super(message);
-        this.errorCode = ErrorCode.EMAIL_SEND_FAIL;
+        this.errorCode = ErrorCode.AUTH_CODE_MISMATCH;
     }
 }
