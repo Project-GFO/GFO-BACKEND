@@ -1,5 +1,6 @@
 package GFO.Spring.global.exception.handler;
 
+import GFO.Spring.domain.email.exception.ManyRequestEmailAuthException;
 import GFO.Spring.domain.user.exception.exceptioncollection.*;
 import GFO.Spring.global.exception.ErrorResponse;
 import GFO.Spring.global.exception.exceptioncollection.TokenExpirationException;
@@ -62,6 +63,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DuplicatedUserEmailException.class)
     public ResponseEntity<ErrorResponse> DuplicatedUserEmail(DuplicatedUserEmailException exception) {
+        ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(ManyRequestEmailAuthException.class)
+    public ResponseEntity<ErrorResponse> ManyRequestEmail(ManyRequestEmailAuthException exception) {
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
