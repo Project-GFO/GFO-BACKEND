@@ -33,12 +33,18 @@ public class SecurityConfig  {
                 .csrf().disable();
 
         httpSecurity
+                // auth
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/auth/signup", "/auth").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/auth").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/auth").permitAll()
 
+                // post
                 .antMatchers(HttpMethod.POST, "/post").authenticated()
+
+                // email
+                .antMatchers(HttpMethod.POST, "/email").permitAll()
+                .antMatchers(HttpMethod.HEAD, "/email").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity
