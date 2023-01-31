@@ -1,5 +1,7 @@
 package GFO.Spring.domain.user.service;
 
+import GFO.Spring.domain.email.entity.EmailAuth;
+import GFO.Spring.domain.email.repository.EmailAuthRepository;
 import GFO.Spring.domain.user.entity.BlackList;
 import GFO.Spring.domain.user.entity.RefreshToken;
 import GFO.Spring.domain.user.entity.User;
@@ -28,6 +30,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final BlackListRepository blackListRepository;
+    private final EmailAuthRepository emailAuthRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
     private final UserUtil userUtil;
@@ -37,6 +40,10 @@ public class UserService {
     public void signUp(SignUpRequest signupRequest) {
       if(userRepository.existsByEmail(signupRequest.getEmail())) {
           throw new DuplicatedUserEmailException("이메일이 중복되었습니다");
+      }
+      EmailAuth emailAuth = emailAuthRepository.findById(signupRequest.getEmail()).orElseThrow(() -> new EmailNotVerifiedException("이메일이 인증되지 않았습니다"));
+      if(!emailAuth.getAuthentication()) {
+            throw new EmailNotVerifiedException("이메일이 인증되지 않았습니다");
       }
       User user = User.builder()
               .email(signupRequest.getEmail())

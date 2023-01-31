@@ -9,6 +9,7 @@ public enum ErrorCode {
 
     AUTH_CODE_MISMATCH("인증번호가 일치하지 않습니다", 400),
     WRONG_PASSWORD("잘못된 비밀번호 입니다", 400),
+    EMAIL_NOT_VERIFIED("이메일이 인증되지 않았습니다", 401),
     TOKEN_EXPIRATION("토큰이 만료 되었습니다", 401),
     TOKEN_NOT_VALID("토큰이 유효하지 않습니다", 401),
     USER_NOT_FOUND("유저를 찾을 수 없습니다", 404),
