@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class EmailCheckServiceImpl implements EmailAuthService {
+public class EmailAuthServiceImpl implements EmailAuthService {
     private final EmailAuthRepository emailAuthRepository;
 
     @Override
