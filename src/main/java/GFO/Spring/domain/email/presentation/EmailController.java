@@ -6,6 +6,7 @@ import GFO.Spring.domain.email.service.EmailAuthService;
 import GFO.Spring.domain.email.service.EmailSendService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +21,11 @@ public class EmailController {
     @PostMapping
     public ResponseEntity<Void> authEmail(@RequestBody @Valid EmailSendDto emailSendDto) {
         emailSendService.execute(emailSendDto);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @RequestMapping(method = RequestMethod.HEAD)
     public ResponseEntity<Void> mailVerify(@Email @RequestParam String email, @RequestParam String authKey){
         emailAuthService.execute(email,authKey);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
