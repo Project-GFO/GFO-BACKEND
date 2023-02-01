@@ -32,6 +32,7 @@ public class EmailSendServiceImpl implements EmailSendService {
         Random random = new Random();
         String authKey = String.valueOf(random.nextInt(8888)+1111);
 
+        sendAuthEmail(emailSendDto.getEmail(), authKey);
     }
 
     private void sendAuthEmail(String email, String authKey) {
