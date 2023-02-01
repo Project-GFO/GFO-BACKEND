@@ -15,7 +15,6 @@ import java.util.Objects;
 public class EmailCheckServiceImpl implements EmailAuthService {
     private final EmailAuthRepository emailAuthRepository;
 
-
     @Override
     public void execute(String email, String authKey) {
         EmailAuth emailAuth = emailAuthRepository.findById(email).orElseThrow(() -> new UserNotFoundException("유저를 찾을 수 없습니다"));

@@ -18,6 +18,7 @@ import javax.validation.Valid;
 public class EmailController {
     private final EmailSendService emailSendService;
     private final EmailAuthService emailAuthService;
+    
     @PostMapping
     public ResponseEntity<Void> authEmail(@RequestBody @Valid EmailSendDto emailSendDto) {
         emailSendService.execute(emailSendDto);
