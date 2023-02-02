@@ -19,13 +19,11 @@ import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
 @Service
-@EnableAsync
 @RequiredArgsConstructor
 public class EmailSendServiceImpl implements EmailSendService {
     private final EmailAuthRepository emailAuthRepository;
     private final JavaMailSender javaMailSender;
 
-    @Async
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void execute(EmailSendDto emailSendDto) {
