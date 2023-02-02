@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmailSendDto {
+public class EmailSendRequest {
     @Email
     @NotBlank(message = "이메일은 필수 입력값입니다")
     private String email;

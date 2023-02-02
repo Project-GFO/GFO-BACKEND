@@ -3,14 +3,12 @@ package GFO.Spring.domain.email.service.impl;
 import GFO.Spring.domain.email.entity.EmailAuth;
 import GFO.Spring.domain.email.exception.EmailSendFailedException;
 import GFO.Spring.domain.email.exception.ManyRequestEmailAuthException;
-import GFO.Spring.domain.email.presentation.dto.request.EmailSendDto;
+import GFO.Spring.domain.email.presentation.dto.request.EmailSendRequest;
 import GFO.Spring.domain.email.repository.EmailAuthRepository;
 import GFO.Spring.domain.email.service.EmailSendService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,11 +24,11 @@ public class EmailSendServiceImpl implements EmailSendService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void execute(EmailSendDto emailSendDto) {
+    public void execute(EmailSendRequest emailSendRequest) {
         Random random = new Random();
         String authKey = String.valueOf(random.nextInt(8888)+1111);
 
-        sendAuthEmail(emailSendDto.getEmail(), authKey);
+        sendAuthEmail(emailSendRequest.getEmail(), authKey);
     }
 
     private void sendAuthEmail(String email, String authKey) {
