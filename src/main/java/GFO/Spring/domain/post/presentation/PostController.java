@@ -25,7 +25,7 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Void> modifyPost(@PathVariable Long id,  @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
         modifyPostService.execute(id, modifyPostRequest);
         return new ResponseEntity<>(HttpStatus.OK);
