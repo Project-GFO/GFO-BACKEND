@@ -3,6 +3,7 @@ package GFO.Spring.global.exception.handler;
 import GFO.Spring.domain.email.exception.AuthCodeMismatchException;
 import GFO.Spring.domain.email.exception.EmailSendFailedException;
 import GFO.Spring.domain.email.exception.ManyRequestEmailAuthException;
+import GFO.Spring.domain.post.exception.PostNotFoundException;
 import GFO.Spring.domain.user.exception.exceptioncollection.*;
 import GFO.Spring.global.exception.ErrorResponse;
 import GFO.Spring.global.exception.exceptioncollection.TokenExpirationException;
@@ -89,6 +90,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailNotVerifiedException.class)
     public ResponseEntity<ErrorResponse> emailNotVerified(EmailNotVerifiedException exception) {
+        ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
+    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<ErrorResponse> postNotFound(PostNotFoundException exception) {
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
