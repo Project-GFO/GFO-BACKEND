@@ -1,7 +1,7 @@
 package GFO.Spring.domain.post.presentation;
 
-import GFO.Spring.domain.post.presentation.dto.request.WritePostRequest;
-import GFO.Spring.domain.post.service.WriteService;
+import GFO.Spring.domain.post.presentation.dto.request.CreatePostRequest;
+import GFO.Spring.domain.post.service.CreatePostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,11 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class PostController {
 
-    private final WriteService writeService;
+    private final CreatePostService createPostService;
 
     @PostMapping
-    public ResponseEntity<Void> writePost(@RequestBody @Valid WritePostRequest writePostRequest) {
-        writeService.execute(writePostRequest);
+    public ResponseEntity<Void> createPost(@RequestBody @Valid CreatePostRequest createPostRequest) {
+        createPostService.execute(createPostRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
