@@ -10,6 +10,7 @@ import GFO.Spring.domain.user.entity.User;
 import GFO.Spring.global.util.UserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public class CreatePostServiceImpl implements CreatePostService {
     private final PostRepository postRepository;
     private final AttachmentRepository attachmentRepository;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void execute(CreatePostRequest createPostRequest) {
         User user = userUtil.currentUser();

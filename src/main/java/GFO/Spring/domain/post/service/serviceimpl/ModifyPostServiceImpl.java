@@ -7,12 +7,14 @@ import GFO.Spring.domain.post.repository.PostRepository;
 import GFO.Spring.domain.post.service.ModifyPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class ModifyPostServiceImpl implements ModifyPostService {
     private final PostRepository postRepository;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void execute(Long id, ModifyPostRequest modifyPostRequest) {
         Post post = postRepository.findById(id)
