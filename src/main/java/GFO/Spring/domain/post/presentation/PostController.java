@@ -28,6 +28,6 @@ public class PostController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> modifyPost(@PathVariable Long id,  @RequestBody @Valid ModifyPostRequest modifyPostRequest) {
         modifyPostService.execute(id, modifyPostRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
