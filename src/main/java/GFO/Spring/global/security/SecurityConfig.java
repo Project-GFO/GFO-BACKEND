@@ -41,6 +41,8 @@ public class SecurityConfig  {
 
                 // post
                 .antMatchers(HttpMethod.POST, "/post").authenticated()
+                .antMatchers(HttpMethod.PUT, "post/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "post/{id}").authenticated()
 
                 // email
                 .antMatchers(HttpMethod.POST, "/email").permitAll()
