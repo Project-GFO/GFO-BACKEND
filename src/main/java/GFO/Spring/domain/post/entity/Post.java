@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +31,9 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "email")
     private User user;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
+    private List<Attachment> attachments;
 
     public void modifyPost(ModifyPostRequest modifyPostRequest) {
         this.title = modifyPostRequest.getTitle();
