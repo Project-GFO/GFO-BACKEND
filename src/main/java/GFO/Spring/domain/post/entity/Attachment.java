@@ -20,7 +20,7 @@ public class Attachment {
     @Column(name = "content_file_url")
     private String contentFileURL;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 
