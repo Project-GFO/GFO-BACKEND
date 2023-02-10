@@ -1,9 +1,8 @@
 package GFO.Spring.domain.post.service.serviceimpl;
 
-import GFO.Spring.domain.post.entity.Attachment;
+import GFO.Spring.domain.image.entity.Attachment;
 import GFO.Spring.domain.post.entity.Post;
 import GFO.Spring.domain.post.presentation.dto.request.CreatePostRequest;
-import GFO.Spring.domain.post.repository.AttachmentRepository;
 import GFO.Spring.domain.post.repository.PostRepository;
 import GFO.Spring.domain.post.service.CreatePostService;
 import GFO.Spring.domain.user.entity.User;
@@ -34,11 +33,5 @@ public class CreatePostServiceImpl implements CreatePostService {
                 .build();
 
         postRepository.save(post);
-
-        List<Attachment> attachments = createPostRequest.getContentFileURLs().stream()
-                .map(att -> new Attachment(att ,post))
-                .collect(Collectors.toList());
-        
-        attachmentRepository.saveAll(attachments);
     }
 }
