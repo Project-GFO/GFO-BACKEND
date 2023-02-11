@@ -4,35 +4,36 @@ import GFO.Spring.domain.image.entity.Attachment;
 import GFO.Spring.domain.image.exception.DirectoryMakeFailException;
 import GFO.Spring.domain.image.repository.AttachmentRepository;
 import GFO.Spring.domain.image.service.ImageService;
+import GFO.Spring.domain.post.entity.Post;
+import GFO.Spring.domain.post.exception.PostNotFoundException;
+import GFO.Spring.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ImageServiceImpl implements ImageService {
     private final AttachmentRepository attachmentRepository;
+    private final PostRepository postRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void execute(List<MultipartFile> images) throws Exception {
-        List<Attachment> attachments = handler(images);
+    public void execute(Long postId, List<MultipartFile> images) throws Exception {
+        List<Attachment> attachments = handler(postId, images);
         attachmentRepository.saveAll(attachments);
     }
 
-    private List<Attachment> handler(List<MultipartFile> images) throws Exception {
+    private List<Attachment> handler(Long postId, List<MultipartFile> images) throws Exception {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("게시물을 찾을 수 없습니다"));
         List<Attachment> attachments = new ArrayList<>();
         String absolutePath = new File("").getAbsolutePath() + File.separator + File.separator;
 
@@ -65,6 +66,7 @@ public class ImageServiceImpl implements ImageService {
                     .originFileName(multipartFile.getOriginalFilename())
                     .filePath(designatePath() + File.separator + UUID.randomUUID() + extensionName)
                     .fileSize(multipartFile.getSize())
+                    .post(post)
                     .build();
 
             attachments.add(attachment);
