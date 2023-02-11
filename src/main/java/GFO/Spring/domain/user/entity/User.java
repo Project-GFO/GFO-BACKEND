@@ -28,6 +28,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public void updatePassword(String password){
+        this.password = password;
+    }
+
     @PrePersist
     public void setting() {
         this.role = this.role == null ? Role.STUDENT : this.role;
