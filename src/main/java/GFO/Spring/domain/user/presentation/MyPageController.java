@@ -4,18 +4,18 @@ import GFO.Spring.domain.user.presentation.dto.request.PasswordRequest;
 import GFO.Spring.domain.user.presentation.dto.response.MyPageResponse;
 import GFO.Spring.domain.user.service.MyPageService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class MyPageController {
 
-    private MyPageService myPageService;
+    private final MyPageService myPageService;
 
     @GetMapping("/my")
     public ResponseEntity<MyPageResponse> myPage(){
@@ -23,16 +23,16 @@ public class MyPageController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteUser(@RequestBody @Valid PasswordRequest passwordRequest){
-        myPageService.deleteUser(passwordRequest);
+    public ResponseEntity<Void> deleteUser(){
+        myPageService.deleteUser();
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     public ResponseEntity<Void> editUser(@RequestBody @Valid PasswordRequest passwordRequest){
         myPageService.editPassword(passwordRequest);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

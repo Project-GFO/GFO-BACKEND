@@ -2,6 +2,8 @@ package GFO.Spring.domain.user.service;
 
 
 import GFO.Spring.domain.user.entity.User;
+import GFO.Spring.domain.user.exception.exceptioncollection.EmailNotFoundException;
+import GFO.Spring.domain.user.exception.exceptioncollection.EmailNotVerifiedException;
 import GFO.Spring.domain.user.exception.exceptioncollection.UserNotFoundException;
 import GFO.Spring.domain.user.exception.exceptioncollection.WrongPasswordException;
 import GFO.Spring.domain.user.presentation.dto.request.PasswordRequest;
@@ -17,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MyPageService {
 
+    private final User user;
     private final UserRepository userRepository;
     private final UserUtil userUtil;
     private final PasswordEncoder passwordEncoder;
@@ -27,31 +30,32 @@ public class MyPageService {
 
         return MyPageResponse.builder()
                 .email(user.getEmail())
-                .password(user.getPassword())
                 .name(user.getName())
                 .build();
     }
 
     @Transactional
-    public void deleteUser(PasswordRequest passwordRequest){
+    public void deleteUser(){
         User user = userUtil.currentUser();
-
-        if(!passwordEncoder.matches(passwordRequest.getPassword(), user.getPassword())){
-            throw new WrongPasswordException("비밀번호가 올바르지 않습니다.");
+        if(authenticationStatus(user.getEmail())){
+            userRepository.delete(user);
         }
-
-        userRepository.delete(user);
     }
 
+    private Boolean authenticationStatus(String email){
+        User emailAuth = userRepository.findById(email).orElseThrow(()->new EmailNotFoundException("이메일을 찾지못했습니다."));
+
+        if(!emailAuth.getVerificationStatus()){
+            throw new EmailNotVerifiedException("이메일이 인증되지 않았습니다.");
+        }
+
+        return true;
+    }
     @Transactional
     public void editPassword(PasswordRequest passwordRequest){
         User user = userUtil.currentUser();
-        User user1 = userRepository.findUserByEmail(user.getEmail())
-                .orElseThrow(()->new UserNotFoundException("유저를 찾을 수 없습니다."));
-        if(!passwordEncoder.matches(passwordRequest.getPassword(), user.getPassword())){
-            throw new WrongPasswordException("비밀번호가 올바르지 않습니다.");
+        if(authenticationStatus(user.getEmail())){
+            user.updatePassword(passwordEncoder.encode(passwordRequest.getPassword()));
         }
-
-        user1.updatePassword(passwordEncoder.encode(passwordRequest.getPassword()));
     }
 }
