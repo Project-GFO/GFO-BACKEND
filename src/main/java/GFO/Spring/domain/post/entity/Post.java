@@ -1,5 +1,6 @@
 package GFO.Spring.domain.post.entity;
 
+import GFO.Spring.domain.image.entity.Attachment;
 import GFO.Spring.domain.post.presentation.dto.request.ModifyPostRequest;
 import GFO.Spring.domain.user.entity.User;
 import lombok.AllArgsConstructor;
