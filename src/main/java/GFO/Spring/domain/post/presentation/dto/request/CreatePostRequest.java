@@ -15,5 +15,4 @@ public class CreatePostRequest {
     private final String title;
     @NotBlank(message = "내용은 필수 입력값입니다")
     private final String content;
-    private final List<String> contentFileURLs;
 }
