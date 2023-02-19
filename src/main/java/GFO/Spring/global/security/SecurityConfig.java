@@ -47,6 +47,9 @@ public class SecurityConfig  {
                 // email
                 .antMatchers(HttpMethod.POST, "/email").permitAll()
                 .antMatchers(HttpMethod.HEAD, "/email").permitAll()
+
+                // image
+                .antMatchers(HttpMethod.POST, "/image").authenticated()
                 .anyRequest().authenticated();
 
         httpSecurity
