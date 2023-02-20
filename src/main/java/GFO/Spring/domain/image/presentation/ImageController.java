@@ -17,7 +17,7 @@ public class ImageController {
     private final ImageService imageService;
 
     @PostMapping
-    public ResponseEntity<Void> createImage(@RequestParam("id") Long postId, @RequestPart("images") List<MultipartFile> images) throws Exception {
+    public ResponseEntity<Void> createImage(@PathVariable Long postId, @RequestPart("images") List<MultipartFile> images) throws Exception {
         imageService.execute(postId, images);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
