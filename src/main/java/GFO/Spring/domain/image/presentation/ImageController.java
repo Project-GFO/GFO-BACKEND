@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -16,9 +15,9 @@ import java.util.List;
 public class ImageController {
     private final ImageService imageService;
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Void> createImage(@PathVariable Long postId, @RequestPart("images") List<MultipartFile> images) throws Exception {
-        imageService.execute(postId, images);
+    @PostMapping("/{post_id}")
+    public ResponseEntity<Void> createImage(@PathVariable("post_id") Long id, @RequestPart("images") List<MultipartFile> images) throws Exception {
+        imageService.execute(id, images);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
