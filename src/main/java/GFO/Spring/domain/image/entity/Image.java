@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Attachment {
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +31,7 @@ public class Attachment {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public Attachment(String originFileName, String filePath, Long fileSize) {
+    public Image(String originFileName, String filePath, Long fileSize) {
         this.originFileName = originFileName;
         this.filePath = filePath;
         this.fileSize = fileSize;

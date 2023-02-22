@@ -1,6 +1,5 @@
 package GFO.Spring.global.util;
 
-import GFO.Spring.domain.image.entity.Attachment;
 import GFO.Spring.domain.image.exception.DirectoryMakeFailException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.UUID;
 
 @Component
