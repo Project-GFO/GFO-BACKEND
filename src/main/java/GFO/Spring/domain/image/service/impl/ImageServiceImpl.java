@@ -7,6 +7,7 @@ import GFO.Spring.domain.image.service.ImageService;
 import GFO.Spring.domain.post.entity.Post;
 import GFO.Spring.domain.post.exception.PostNotFoundException;
 import GFO.Spring.domain.post.repository.PostRepository;
+import GFO.Spring.global.util.ImageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class ImageServiceImpl implements ImageService {
     private final AttachmentRepository attachmentRepository;
     private final PostRepository postRepository;
+    private final ImageUtil imageUtil;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -35,16 +37,7 @@ public class ImageServiceImpl implements ImageService {
     private List<Attachment> handler(Long postId, List<MultipartFile> images) throws Exception {
         Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("게시물을 찾을 수 없습니다"));
         List<Attachment> attachments = new ArrayList<>();
-        String absolutePath = new File("").getAbsolutePath() + File.separator + File.separator;
 
-        File file = new File(designatePath());
-
-        if (!file.exists()) {
-            boolean wasSuccessful = file.mkdirs();
-            if (!wasSuccessful)
-                throw new DirectoryMakeFailException("디렉토리 생성에 실패했습니다");
-
-        }
 
         List<MultipartFile> image = images.stream()
                 .filter(i -> Objects.requireNonNull(i.getContentType()).endsWith("image/jpeg") || i.getContentType().endsWith("image/png"))
@@ -64,29 +57,19 @@ public class ImageServiceImpl implements ImageService {
 
             Attachment attachment = Attachment.builder()
                     .originFileName(multipartFile.getOriginalFilename())
-                    .filePath(designatePath() + File.separator + UUID.randomUUID() + extensionName)
+                    .filePath(imageUtil.designatePath() + File.separator + UUID.randomUUID() + extensionName)
                     .fileSize(multipartFile.getSize())
                     .post(post)
                     .build();
 
             attachments.add(attachment);
 
-            file = new File(absolutePath + designatePath() + File.separator + UUID.randomUUID() + extensionName);
-            multipartFile.transferTo(file);
+            imageUtil.saveFile(multipartFile, extensionName);
 
-            file.setWritable(true);
-            file.setReadable(true);
         }
         return attachments;
     }
 
-    private String designatePath() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter =
-                DateTimeFormatter.ofPattern("yyyyMMdd");
-        String current_date = now.format(dateTimeFormatter);
 
-        return "images" + File.separator + current_date;
-    }
 
 }
