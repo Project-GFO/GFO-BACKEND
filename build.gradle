@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.session:spring-session-data-redis'
 	implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.13'
 
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
