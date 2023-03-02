@@ -18,22 +18,9 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "origin_file_name")
-    private String originFileName;
-
-    @Column(name = "file_path")
-    private String filePath;
-
-    @Column(name = "file_size")
-    private Long fileSize;
+    private String url;
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn
     private Post post;
-
-    public Image(String originFileName, String filePath, Long fileSize) {
-        this.originFileName = originFileName;
-        this.filePath = filePath;
-        this.fileSize = fileSize;
-    }
 }
