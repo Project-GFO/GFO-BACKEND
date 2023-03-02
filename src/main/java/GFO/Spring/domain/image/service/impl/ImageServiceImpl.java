@@ -1,10 +1,7 @@
 package GFO.Spring.domain.image.service.impl;
 
-import GFO.Spring.domain.image.entity.Image;
 import GFO.Spring.domain.image.exception.FailedUploadImageException;
-import GFO.Spring.domain.image.repository.ImageRepository;
 import GFO.Spring.domain.image.service.ImageService;
-import GFO.Spring.domain.post.exception.PostNotFoundException;
 import GFO.Spring.domain.post.repository.PostRepository;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -27,12 +24,12 @@ public class ImageServiceImpl implements ImageService {
     @Value("${cloud.aws.s3.url}")
     private String url;
     private final AmazonS3 amazonS3;
-    private final PostRepository postRepository;
-    private final ImageRepository imageRepository;
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void execute(Long postId, List<MultipartFile> multipartFiles) {
+    public List<String> execute(List<MultipartFile> multipartFiles) {
+        List<String> urls= new ArrayList<>();
 
         multipartFiles.forEach(image -> {
             String fileName = createFileName() + image.getOriginalFilename();
@@ -46,15 +43,10 @@ public class ImageServiceImpl implements ImageService {
             } catch (IOException e) {
                 throw new FailedUploadImageException("이미지 업로드에 실패하였습니다");
             }
-
-            Image imageUrl = Image.builder()
-                    .url(url + fileName)
-                    .post(postRepository.findById(postId)
-                            .orElseThrow(() -> new PostNotFoundException("해당 게시물을 찾을 수 없습니다")))
-                    .build();
-
-            imageRepository.save(imageUrl);
+            urls.add(fileName+image.getOriginalFilename());
         });
+
+        return urls;
     }
 
     private String createFileName() {

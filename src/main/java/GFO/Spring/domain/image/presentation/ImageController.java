@@ -15,9 +15,9 @@ import java.util.List;
 public class ImageController {
     private final ImageService imageService;
 
-    @PostMapping("/{post_id}")
-    public ResponseEntity<Void> createImage(@PathVariable("post_id") Long id, @RequestPart("images") List<MultipartFile> images) throws Exception {
-        imageService.execute(id, images);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<List<String>> createImage(@RequestPart("images") List<MultipartFile> images) throws Exception {
+        List<String> result = imageService.execute(images);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
