@@ -2,7 +2,6 @@ package GFO.Spring.domain.image.service.impl;
 
 import GFO.Spring.domain.image.exception.FailedUploadImageException;
 import GFO.Spring.domain.image.service.ImageService;
-import GFO.Spring.domain.post.repository.PostRepository;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
