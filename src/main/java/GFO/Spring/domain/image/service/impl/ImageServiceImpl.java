@@ -1,72 +1,63 @@
 package GFO.Spring.domain.image.service.impl;
 
 import GFO.Spring.domain.image.entity.Image;
-import GFO.Spring.domain.image.repository.AttachmentRepository;
+import GFO.Spring.domain.image.exception.FailedUploadImageException;
+import GFO.Spring.domain.image.repository.ImageRepository;
 import GFO.Spring.domain.image.service.ImageService;
-import GFO.Spring.domain.post.entity.Post;
 import GFO.Spring.domain.post.exception.PostNotFoundException;
 import GFO.Spring.domain.post.repository.PostRepository;
-import GFO.Spring.global.util.ImageUtil;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ImageServiceImpl implements ImageService {
-    private final AttachmentRepository attachmentRepository;
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+    @Value("${cloud.aws.s3.url}")
+    private String url;
+    private final AmazonS3 amazonS3;
     private final PostRepository postRepository;
-    private final ImageUtil imageUtil;
+    private final ImageRepository imageRepository;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void execute(Long postId, List<MultipartFile> images) throws Exception {
-        List<Image> attachments = imageHandler(postId, images);
-        attachmentRepository.saveAll(attachments);
-    }
+    public void execute(Long postId, List<MultipartFile> multipartFiles) {
 
-    private List<Image> imageHandler(Long postId, List<MultipartFile> images) throws Exception {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("게시물을 찾을 수 없습니다"));
-        List<Image> attachments = new ArrayList<>();
+        multipartFiles.forEach(image -> {
+            String fileName = createFileName() + image.getOriginalFilename();
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentLength(image.getSize());
+            objectMetadata.setContentType(image.getContentType());
 
-
-        List<MultipartFile> filteredImages = images.stream()
-                .filter(i -> Objects.requireNonNull(i.getContentType()).endsWith("image/jpeg") || i.getContentType().endsWith("image/png"))
-                .collect(Collectors.toList());
-
-        for (MultipartFile multipartFile : filteredImages) {
-            String extensionName = null;
-            String contentType = multipartFile.getContentType();
-
-            if (!ObjectUtils.isEmpty(contentType)) {
-                if (contentType.endsWith("image/jpeg")) {
-                    extensionName = ".jpg";
-                } else if (contentType.endsWith("image/png")) {
-                    extensionName = ".png";
-                }
+            try (InputStream inputStream = image.getInputStream()) {
+                amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata)
+                        .withCannedAcl(CannedAccessControlList.PublicRead));
+            } catch (IOException e) {
+                throw new FailedUploadImageException("이미지 업로드에 실패하였습니다");
             }
 
-            Image image = Image.builder()
-                    .originFileName(multipartFile.getOriginalFilename())
-                    .filePath(imageUtil.designatePath() + File.separator + UUID.randomUUID() + extensionName)
-                    .fileSize(multipartFile.getSize())
-                    .post(post)
+            Image imageUrl = Image.builder()
+                    .url(url + fileName)
+                    .post(postRepository.findById(postId)
+                            .orElseThrow(() -> new PostNotFoundException("해당 게시물을 찾을 수 없습니다")))
                     .build();
 
-            attachments.add(image);
-
-            imageUtil.saveFile(multipartFile, extensionName);
-
-        }
-        return attachments;
+            imageRepository.save(imageUrl);
+        });
     }
 
-
-
+    private String createFileName() {
+        return UUID.randomUUID().toString();
+    }
 }
