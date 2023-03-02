@@ -42,7 +42,7 @@ public class ImageServiceImpl implements ImageService {
             } catch (IOException e) {
                 throw new FailedUploadImageException("이미지 업로드에 실패하였습니다");
             }
-            urls.add(fileName+image.getOriginalFilename());
+            urls.add(fileName);
         });
 
         return urls;
