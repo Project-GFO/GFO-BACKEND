@@ -29,7 +29,7 @@ public class ImageServiceImpl implements ImageService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public List<String> execute(List<MultipartFile> multipartFiles) {
-        List<String> urls= new ArrayList<>();
+        List<String> urls = new ArrayList<>();
 
         multipartFiles.forEach(image -> {
             String fileName = createFileName() + image.getOriginalFilename();

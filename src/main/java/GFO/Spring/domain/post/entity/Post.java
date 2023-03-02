@@ -33,9 +33,6 @@ public class Post {
     @JoinColumn(name = "email")
     private User user;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
-    private List<Image> images;
-
     public void modifyPost(ModifyPostRequest modifyPostRequest) {
         this.title = modifyPostRequest.getTitle();
         this.content = modifyPostRequest.getContent();
