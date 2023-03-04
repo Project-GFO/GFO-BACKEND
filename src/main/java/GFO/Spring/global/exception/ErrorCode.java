@@ -21,7 +21,8 @@ public enum ErrorCode {
     EMAIL_ALREADY_EXIST("존재하는 이메일 입니다", 409),
     CLASS_NUMBER_ALREADY_EXIST("존재하는 학번 입니다", 409),
     MANY_REQUEST_EMAIL_AUTH("이메일은 15분에 최대 3회까지만 발송됩니다", 429),
-    EMAIL_SEND_FAIL("메일 발송에 실패했습니다", 500);
+    EMAIL_SEND_FAIL("메일 발송에 실패했습니다", 500),
+    FAILED_UPLOAD_IMAGE("이미지 업로드에 실패했습니다", 500);
 
     private final String message;
     private final int status;

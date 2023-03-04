@@ -1,9 +1,7 @@
 package GFO.Spring.domain.post.service.serviceimpl;
 
-import GFO.Spring.domain.post.entity.Attachment;
 import GFO.Spring.domain.post.entity.Post;
 import GFO.Spring.domain.post.presentation.dto.request.CreatePostRequest;
-import GFO.Spring.domain.post.repository.AttachmentRepository;
 import GFO.Spring.domain.post.repository.PostRepository;
 import GFO.Spring.domain.post.service.CreatePostService;
 import GFO.Spring.domain.user.entity.User;
@@ -12,15 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 @RequiredArgsConstructor
 public class CreatePostServiceImpl implements CreatePostService {
     private final UserUtil userUtil;
     private final PostRepository postRepository;
-    private final AttachmentRepository attachmentRepository;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -34,11 +28,5 @@ public class CreatePostServiceImpl implements CreatePostService {
                 .build();
 
         postRepository.save(post);
-
-        List<Attachment> attachments = createPostRequest.getContentFileURLs().stream()
-                .map(att -> new Attachment(att ,post))
-                .collect(Collectors.toList());
-        
-        attachmentRepository.saveAll(attachments);
     }
 }

@@ -3,6 +3,7 @@ package GFO.Spring.global.exception.handler;
 import GFO.Spring.domain.email.exception.AuthCodeMismatchException;
 import GFO.Spring.domain.email.exception.EmailSendFailedException;
 import GFO.Spring.domain.email.exception.ManyRequestEmailAuthException;
+import GFO.Spring.domain.image.exception.FailedUploadImageException;
 import GFO.Spring.domain.post.exception.EmailMismatchException;
 import GFO.Spring.domain.post.exception.PostNotFoundException;
 import GFO.Spring.domain.user.exception.exceptioncollection.*;
@@ -101,8 +102,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
 
-    @ExceptionHandler(EmailMismatchException.class)
-    public ResponseEntity<ErrorResponse> emailMismatch(EmailMismatchException exception) {
+    @ExceptionHandler(FailedUploadImageException.class)
+    public ResponseEntity<ErrorResponse> failedUploadImage(FailedUploadImageException exception) {
         ErrorResponse errorResponse = new ErrorResponse(exception.getErrorCode().getMessage(), exception.getErrorCode().getStatus());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.valueOf(exception.getErrorCode().getStatus()));
     }
