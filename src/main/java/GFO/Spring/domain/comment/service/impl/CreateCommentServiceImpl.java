@@ -3,7 +3,7 @@ package GFO.Spring.domain.comment.service.impl;
 import GFO.Spring.domain.comment.entity.Comment;
 import GFO.Spring.domain.comment.presentation.dto.request.CreateCommentReqDto;
 import GFO.Spring.domain.comment.repository.CommentRepository;
-import GFO.Spring.domain.comment.service.CommentService;
+import GFO.Spring.domain.comment.service.CreateCommentService;
 import GFO.Spring.domain.post.exception.PostNotFoundException;
 import GFO.Spring.domain.post.repository.PostRepository;
 import GFO.Spring.global.util.UserUtil;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CommentServiceImpl implements CommentService {
+public class CreateCommentServiceImpl implements CreateCommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final UserUtil userUtil;

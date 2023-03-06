@@ -2,6 +2,6 @@ package GFO.Spring.domain.comment.service;
 
 import GFO.Spring.domain.comment.presentation.dto.request.CreateCommentReqDto;
 
-public interface CommentService {
+public interface CreateCommentService {
     void execute(CreateCommentReqDto createCommentReqDto);
 }
