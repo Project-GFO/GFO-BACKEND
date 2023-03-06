@@ -13,7 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Comment {
     @Id
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "comment_id")
     private Long id;
 
     @Column(nullable = false)
