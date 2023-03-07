@@ -29,8 +29,8 @@ spring:
     port: ${REDIS_PORT}
 
   datasource:
-    url: jdbc:mysql://${DB_URL}/${DB_NAME}?characterEncoding=UTF-8&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mariadb://${DB_URL}/${DB_NAME}?characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: org.mariadb.jdbc.Driver
     username: ${DB_USER_NAME}
     password: ${DB_PASSWORD}
 
