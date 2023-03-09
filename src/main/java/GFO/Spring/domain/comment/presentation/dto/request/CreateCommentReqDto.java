@@ -6,6 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class CreateCommentReqDto {
-    private Long postId;
     private String comment;
 }

@@ -18,11 +18,11 @@ public class CreateCommentServiceImpl implements CreateCommentService {
     private final UserUtil userUtil;
 
     @Override
-    public void execute(CreateCommentReqDto createCommentReqDto) {
+    public void execute(Long postId, CreateCommentReqDto createCommentReqDto) {
         Comment comment = Comment.builder()
                 .comment(createCommentReqDto.getComment())
                 .user(userUtil.currentUser())
-                .post(postRepository.findById(createCommentReqDto.getPostId()).orElseThrow(
+                .post(postRepository.findById(postId).orElseThrow(
                         () -> new PostNotFoundException("게시글을 찾을 수 없습니다")))
                 .build();
 
