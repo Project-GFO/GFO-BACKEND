@@ -20,6 +20,7 @@ public class CreateCommentServiceImpl implements CreateCommentService {
     private final UserUtil userUtil;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void execute(Long postId, CreateCommentReqDto createCommentReqDto) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new PostNotFoundException("게시글을 찾을 수 없습니다"));
