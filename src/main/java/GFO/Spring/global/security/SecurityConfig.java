@@ -52,7 +52,7 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.POST, "/image").authenticated()
 
                 // comment
-                .antMatchers(HttpMethod.POST, "/comment").authenticated()
+                .antMatchers(HttpMethod.POST, "/comment/{id}").authenticated()
                 .anyRequest().authenticated();
 
         httpSecurity
