@@ -17,6 +17,7 @@ public enum ErrorCode {
     POST_NOT_FOUND("게시물을 찾을 수 없습니다", 404),
     REFRESH_TOKEN_NOT_FOUND("리프레시 토큰을 찾을 수 없습니다", 404),
     EMAIL_NOT_FOUND("존재하지 않는 이메일 입니다", 404),
+    COMMENT_NOT_FOUND("댓글을 찾을 수 없습니다", 404),
     BLACK_LIST_ALREADY_EXIST("블랙리스트에 이미 존재합니다", 409),
     EMAIL_ALREADY_EXIST("존재하는 이메일 입니다", 409),
     CLASS_NUMBER_ALREADY_EXIST("존재하는 학번 입니다", 409),
